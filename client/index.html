@@ -1,12 +1,18 @@
 <!DOCTYPE html>
-<html ng-app='rain'>
+<html ng-app="rain">
 <head>
 	<link rel="stylesheet" type="text/css" href="/styles/styles.css">
 	<title>Rain Song</title>
 </head>
 <body>
 	<div ng-view></div>
-	<script src='/app/services/services.js'></script>
-	<script src='/app/app.js'></script>
+
+  <script src="lib/angular/angular.js"></script>
+  <script src="lib/angular-route/angular-route.js"></script>
+
+	<script src="app/services/services.js"></script>
+  <script src="app/weather/weather.js"></script>
+	<script src="app/app.js"></script>
+
 </body>
 </html>
