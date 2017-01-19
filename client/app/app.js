@@ -6,6 +6,7 @@ angular.module('rain', [
 
 //TODO: client side routing
 .config(function($routeProvider){
+	$routeProvider
 	.when('/', {
 		templateUrl: 'app/weather/weather.html',
 		controller: 'weatherControl'
