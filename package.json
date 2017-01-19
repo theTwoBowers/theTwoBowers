@@ -2,7 +2,6 @@
   "name": "rain_song",
   "version": "1.0.0",
   "description": "play music based on weather",
-  "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
