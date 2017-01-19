@@ -2,6 +2,14 @@ var express = require('express');
 var morgan = require('morgan');
 var bodyParser = require('body-parser');
 //TODO: connect to database;
+var mongoose = require('mongoose');
+
+mongoose.connect('mongodb://localhost/twoBowers');
+
+var db = mongoose.connection;
+db.once('open', function() {
+  console.log('Connected to MongoDB')
+})
 
 var app = express();
 var port = process.env.PORT || 3000;
