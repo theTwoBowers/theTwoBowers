@@ -1,5 +1,5 @@
 var express = require('express');
-var morgan = require('morgan');
+var morgan = require('morgan'); // logs server interactions
 var bodyParser = require('body-parser');
 //TODO: connect to database;
 var mongoose = require('mongoose');
@@ -32,3 +32,4 @@ app.use(express.static(__dirname + '../client'));
 app.listen(port);
 
 console.log('I am listening to port:', port);
+//something happened
