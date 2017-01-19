@@ -1,5 +1,8 @@
 angular.module('rain.weather', [])
 
 .controller('weatherControl', function($scope, Weather) {
-  $scope.weather = Weather.get();
+	
+  Weather.get().then(function(weather){
+  	$scope.weather = weather;
+  })
 });
