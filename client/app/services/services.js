@@ -14,3 +14,29 @@ angular.module('rain.services', [])
     }
   }
 })
+
+
+.factory('Video', function($http){
+  return {
+    getVid: function(search){
+      // make object play genre based on weather
+      var obj = {
+        'Rain': 'sad anime'
+      }
+      return $http({
+        method: 'GET',
+        url: 'https://www.googleapis.com/youtube/v3/search',
+        params: {
+          part: 'snippet',
+          type: 'video',
+          videoEmbeddable: true,
+          key:'AIzaSyBWzdeA8Kc4DD__k7IgNKTblq0dAMXm0xs',
+          q: obj[search] + ' music',
+          maxResults: 2
+        }
+      }).then(function(resp){
+        return resp.data
+      })
+    }
+  }
+})
