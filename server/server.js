@@ -20,13 +20,7 @@ app.use(bodyParser.urlencoded({extended: true}));
 app.use(express.static(__dirname + '/../client'));
 console.log(__dirname)
 
-
 //TODO: server routing;
-
-
-
-
-
 
 
 app.listen(port);

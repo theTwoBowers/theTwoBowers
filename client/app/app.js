@@ -6,11 +6,12 @@ angular.module('rain', [
 
 //TODO: client side routing
 .config(function($routeProvider){
-	.when('/', {
-		templateUrl: 'app/weather/weather.html',
-		controller: 'weatherControl'
-	})
-	.otherwise({
-		redirectTo: '/'
-	})
+  $routeProvider
+  	.when('/', {
+  		templateUrl: 'app/weather/weather.html',
+  		controller: 'weatherControl'
+  	})
+  	.otherwise({
+  		redirectTo: '/'
+  	});
 })
