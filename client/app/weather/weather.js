@@ -11,10 +11,9 @@ angular.module('rain.weather', [])
     })
     .then(function(loc) {
       Weather.get(loc[0], loc[1]).then(function(data) {
-        console.log(data);
         $scope.weather = data.weather[0].main;
       });
     });
   }
-
+  
 });
