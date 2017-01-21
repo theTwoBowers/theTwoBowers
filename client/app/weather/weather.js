@@ -1,6 +1,20 @@
 angular.module('rain.weather', [])
 
-.controller('weatherControl', function($scope, Weather) {
+.controller('weatherControl', function($scope, Weather, Video, $sce) {
+
+	$scope.getMusic = function(){
+		var search = $scope.search;
+		$scope.search = '';
+		Video.getVid(search).then(function(data){
+			var playlist = data.items.map(function(item){
+				return item.id.videoId;
+			})
+			var firstVid = playlist.shift();
+			playlist =playlist.join(',')
+			console.log('https://www.youtube.com/embed/' + firstVid + '?playlist=' + playlist + '?autoplay=1')
+			$scope.data = $sce.trustAsResourceUrl('https://www.youtube.com/embed/' + firstVid + '?playlist=' + playlist + '&autoplay=1&loop=1');
+		})
+	}
 
   $scope.getLocation = function() {
     return new Promise(function(resolve, reject) {
@@ -11,9 +25,17 @@ angular.module('rain.weather', [])
     })
     .then(function(loc) {
       Weather.get(loc[0], loc[1]).then(function(data) {
-        $scope.weather = data.weather[0].main;
-      });
-    });
+				console.log(data.weather[0].main)
+		    Video.getVid(data.weather[0].main).then(function(data){
+					var playlist = data.items.map(function(item){
+						return item.id.videoId;
+					})
+					var firstVid = playlist.shift();
+					playlist =playlist.join(',')
+					$scope.data = $sce.trustAsResourceUrl('https://www.youtube.com/embed/' + firstVid + '?playlist=' + playlist + '&autoplay=1&loop=1');
+				})
+      })
+    })
   }
   
 });
