@@ -21,7 +21,7 @@ angular.module('rain.services', [])
     getVid: function(search){
       // make object play genre based on weather
       var obj = {
-        'Rain': 'sad anime'
+        'Rain': 'sad'
       }
       return $http({
         method: 'GET',
@@ -31,7 +31,7 @@ angular.module('rain.services', [])
           type: 'video',
           videoEmbeddable: true,
           key:'AIzaSyBWzdeA8Kc4DD__k7IgNKTblq0dAMXm0xs',
-          q: obj[search] + ' music',
+          q: obj[search] + ' anime music',
           maxResults: 2
         }
       }).then(function(resp){
