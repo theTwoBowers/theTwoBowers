@@ -2,21 +2,18 @@ angular.module('rain.weather', [])
 
 .controller('weatherControl', function($scope, Weather, Video, $sce) {
 
-	$scope.getMusic = function(){
-		var search = $scope.search;
-		$scope.search = '';
-		Video.getVid(search).then(function(data){
-			var playlist = data.items.map(function(item){
-				return item.id.videoId;
-			})
-			var firstVid = playlist.shift();
-			playlist =playlist.join(',')
-			console.log('https://www.youtube.com/embed/' + firstVid + '?playlist=' + playlist + '?autoplay=1')
-			$scope.data = $sce.trustAsResourceUrl('https://www.youtube.com/embed/' + firstVid + '?playlist=' + playlist + '&autoplay=1&loop=1');
-		})
-	}
+  var getPlaylist = function(weather) {
+    Video.getVid(data.weather[0].main).then(function(data){
+      var playlist = data.items.map(function(item){
+        return item.id.videoId;
+      });
+      var firstVid = playlist.shift();
+      playlist = playlist.join(',')
+      $scope.data = $sce.trustAsResourceUrl('https://www.youtube.com/embed/' + firstVid + '?playlist=' + playlist + '&autoplay=1&loop=1');
+    });
+  }
 
-  $scope.getLocation = function() {
+  $scope.getWeatherGeoLocation = function() {
     return new Promise(function(resolve, reject) {
       navigator.geolocation.getCurrentPosition(resolve, reject);
     })
@@ -24,7 +21,7 @@ angular.module('rain.weather', [])
       return [geo.coords.latitude, geo.coords.longitude];
     })
     .then(function(loc) {
-      Weather.get(loc[0], loc[1]).then(function(data) {
+      Weather.getWeatherByCoords(loc[0], loc[1]).then(function(data) {
 				console.log(data.weather[0].main)
 		    Video.getVid(data.weather[0].main).then(function(data){
 		    	$scope.playlist = data.items;
@@ -36,9 +33,9 @@ angular.module('rain.weather', [])
 					var firstVid = playlist.shift();
 					playlist = playlist.join(',');
 					$scope.data = $sce.trustAsResourceUrl('https://www.youtube.com/embed/' + firstVid + '?playlist=' + playlist + '&autoplay=1&loop=1');
-				})
-      })
-    })
+				});
+      });
+    });
   }
 
 	function shuffle(array) {
