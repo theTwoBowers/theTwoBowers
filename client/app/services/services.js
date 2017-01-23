@@ -32,7 +32,7 @@ angular.module('rain.services', [])
           videoEmbeddable: true,
           key:'AIzaSyBWzdeA8Kc4DD__k7IgNKTblq0dAMXm0xs',
           q: obj[search] + ' anime music',
-          maxResults: 2
+          maxResults: 10
         }
       }).then(function(resp){
         return resp.data
