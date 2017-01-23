@@ -8,8 +8,8 @@ mongoose.connect('mongodb://localhost/twoBowers');
 
 var db = mongoose.connection;
 db.once('open', function() {
-  console.log('Connected to MongoDB')
-})
+  console.log('Connected to MongoDB');
+});
 
 var app = express();
 var port = process.env.PORT || 3000;
@@ -18,12 +18,14 @@ app.use(morgan('dev'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended: true}));
 app.use(express.static(__dirname + '/../client'));
-console.log(__dirname)
+console.log(__dirname);
 
 //TODO: server routing;
 
 
-app.listen(port);
+app.listen(port, function() {
+  console.log('I am listening to port:', port);
+});
 
-console.log('I am listening to port:', port);
+
 //something happened

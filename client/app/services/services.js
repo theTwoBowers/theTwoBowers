@@ -1,9 +1,9 @@
 angular.module('rain.services', [])
 
 //TODO: angular factories/services
-.factory('Weather', function($http){
+.factory('Weather', function($http) {
 
-	return {
+  return {
     get: function(lat, lon) {
       return $http({
         method: 'GET',
@@ -11,18 +11,19 @@ angular.module('rain.services', [])
       }).then(function(resp) {
         return resp.data;
       });
-    }
-  }
+    }      
+  };
 })
 
 
-.factory('Video', function($http){
+.factory('Video', function($http) {
   return {
-    getVid: function(search){
+    getVid: function(search) {
       // make object play genre based on weather
       var obj = {
-        'Rain': 'sad'
-      }
+        'Rain': 'sad',
+        'Clouds': 'chill'
+      };
       return $http({
         method: 'GET',
         url: 'https://www.googleapis.com/youtube/v3/search',
@@ -30,13 +31,13 @@ angular.module('rain.services', [])
           part: 'snippet',
           type: 'video',
           videoEmbeddable: true,
-          key:'AIzaSyBWzdeA8Kc4DD__k7IgNKTblq0dAMXm0xs',
-          q: obj[search] + ' anime music',
+          key: 'AIzaSyBWzdeA8Kc4DD__k7IgNKTblq0dAMXm0xs',
+          q: obj[search],
           maxResults: 10
         }
-      }).then(function(resp){
-        return resp.data
-      })
+      }).then(function(resp) {
+        return resp.data;
+      });
     }
-  }
-})
+  };
+});
