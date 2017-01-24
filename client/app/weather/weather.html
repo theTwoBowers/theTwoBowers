@@ -1,4 +1,12 @@
+<div id="search">
+  <form ng-submit="getWeatherByInput()">
+    <input ng-model="city" class="input" placeholder="Search by city"></input>
+    <button class="input">Search</button>  
+  </form>
+</div>
+
 <div ng-init="getWeatherGeoLocation()" id="vidContainer">
+
   <iframe id="video" src="{{ data }}" allowfullscreen="true"></iframe>
 
   <div id="playList">
