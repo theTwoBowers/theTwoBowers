@@ -27,6 +27,13 @@ angular.module('rain.weather', [])
     });
   }
 
+  $scope.getWeatherByInput = function() {
+    Weather.getWeatherByCity($scope.city).then(function(data) {
+      //console.log(data.list);
+      getPlaylist(data.list[0].weather[0].main);
+    });    
+  }
+
   $scope.getWeatherGeoLocation = function() {
     return new Promise(function(resolve, reject) {
       navigator.geolocation.getCurrentPosition(resolve, reject);
@@ -41,5 +48,4 @@ angular.module('rain.weather', [])
       });
     });
   };
-
 });

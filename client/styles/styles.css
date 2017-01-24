@@ -1,5 +1,4 @@
 /*TODO: styling for front-end*/
-
 #vidContainer {
   position: absolute; 
   height: 800px;
@@ -8,6 +7,12 @@
   left: 50%;
   transform: translate(-50%, -50%);
   -webkit-transform: translate(-50%, -50%);
+}
+
+#search {
+  margin-top: 30px;
+  margin-right: 100px;
+  float: right;
 }
 
 #video {
@@ -33,6 +38,10 @@
 
 .playListVideo {
   border: 1px solid black;
+}
+
+.input {
+  font-size: 20px;
 }
 
 li {
