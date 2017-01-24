@@ -49,7 +49,7 @@ angular.module('rain.services', [])
           type: 'video',
           videoEmbeddable: true,
           key: 'AIzaSyBWzdeA8Kc4DD__k7IgNKTblq0dAMXm0xs',
-          q: queryStr[randomNum()] + ' song',
+          q: queryStr[randomNum()] + ' anime music',
           maxResults: 10
         }
       }).then(function(resp) {
