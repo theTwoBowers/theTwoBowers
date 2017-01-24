@@ -6,13 +6,13 @@
 </div>
 
 <div ng-init="getWeatherGeoLocation()" id="vidContainer">
-
   <iframe id="video" src="{{ data }}" allowfullscreen="true"></iframe>
 
   <div id="playList">
   	<div class="playListVideo" ng-Repeat='item in playlist track by $index'>
-      <div ng-Click="playlistClick(item, playlist)">{{ item.snippet.title }}</div><br> 
-      <img src = "{{ item.snippet.thumbnails.default.url }}" />
+      <div ng-Click="playlistClick(item, playlist)">{{ item.snippet.title }}<br> 
+        <img src = "{{ item.snippet.thumbnails.default.url }}" />
+      </div>
     </div>
   </div>
 </div>

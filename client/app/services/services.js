@@ -2,7 +2,6 @@ angular.module('rain.services', [])
 
 //TODO: angular factories/services
 .factory('Weather', function($http) {
-
   return {
     getWeatherByCoords: function(lat, lon) {
       return $http({
