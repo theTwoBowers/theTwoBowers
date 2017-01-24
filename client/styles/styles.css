@@ -1,7 +1,23 @@
 /*TODO: styling for front-end*/
+
+iframe {
+	width: 50%;
+	height: 50%;
+	position: absolute;
+	left: 25%;
+	top: 20%;
+}
+
 #playList {
 	list-style: none;
 	width: 200px;
-	border: 1px solid black;
 	text-align: center;
+	float: right;
+	margin-right: 50px;
+	margin-top: 9.5%;
+}
+
+li {
+	text-align: center;
+	border: 1px solid black;
 }

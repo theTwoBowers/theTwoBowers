@@ -27,11 +27,11 @@ angular.module('rain.weather', [])
       Weather.get(loc[0], loc[1]).then(function(data) {
         console.log(data.weather[0].main);
         Video.getVid(data.weather[0].main).then(function(data) {
+          shuffle(data.items);  
           $scope.playlist = data.items;
           var playlist = data.items.map(function(item) {
             return item.id.videoId;
           });
-          shuffle(playlist);  
           var firstVid = playlist.shift();
           playlist = playlist.join(',');
           $scope.data = $sce.trustAsResourceUrl('https://www.youtube.com/embed/' + firstVid + '?playlist=' + playlist + '&autoplay=1&loop=1');
