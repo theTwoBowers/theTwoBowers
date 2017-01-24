@@ -11,7 +11,7 @@
 
   <div id="playList">
   	<div class="playListVideo" ng-Repeat='item in playlist track by $index'>
-      {{ item.snippet.title }}<br> 
+      <div ng-Click="playlistClick(item, playlist)">{{ item.snippet.title }}</div><br> 
       <img src = "{{ item.snippet.thumbnails.default.url }}" />
     </div>
   </div>

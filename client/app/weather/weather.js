@@ -1,6 +1,6 @@
 angular.module('rain.weather', [])
 
-.controller('weatherControl', function($scope, $sce, Weather, Video) {
+.controller('weatherControl', function($scope, $sce, Weather, Video, $window) {
 
   var shuffle = function(array) {
     var currentIndex = array.length, temporaryValue, randomIndex;
@@ -43,9 +43,16 @@ angular.module('rain.weather', [])
     })
     .then(function(loc) {
       Weather.getWeatherByCoords(loc[0], loc[1]).then(function(data) {
-        console.log(data.weather[0].main);
         getPlaylist(data.weather[0].main);
       });
     });
   };
+
+  $scope.playlistClick = function(item, playlist) {
+    var temp = playlist.map(function(item){
+      return item.id.videoId;
+    })
+    temp.splice(temp.indexOf(item), 1);
+    $scope.data = $sce.trustAsResourceUrl('https://www.youtube.com/embed/' + item.id.videoId + '?playlist=' + temp + '&autoplay=1&loop=1');
+  }
 });
