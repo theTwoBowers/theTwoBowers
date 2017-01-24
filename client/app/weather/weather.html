@@ -1,13 +1,17 @@
-<div>
-  <form ng-submit="getWeatherByInput()">
-    <input ng-model="city" placeholder="Search by city"></input>
-    <button>Search</button>  
-  </form>
+<div class="page-header" id="header">
+  <span id="logo">Rain Song</span>
+  <div>
+    <form ng-submit="getWeatherByInput()" id="search">
+      <input ng-model="city" placeholder="Search by city"></input>
+      <button>Search</button>  
+    </form>
+  </div>
+
+  <div id="weather">
+    <h1>{{ weather }}</h1>
+  </div>
 </div>
 
-<div id="weather">
-  <h1>{{ weather }}</h1>
-</div>
 
 <div ng-init="getWeatherGeoLocation()" class="row">
   <div class="col-xs-3"></div>

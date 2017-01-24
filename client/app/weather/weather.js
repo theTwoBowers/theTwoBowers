@@ -1,8 +1,7 @@
 angular.module('rain.weather', [])
 
 .controller('weatherControl', function($scope, $sce, Weather, Video) {
-
-  $scope.weather = 'Loading...'
+  $scope.weather = 'Loading...';
 
   var shuffle = function(array) {
     var currentIndex = array.length, temporaryValue, randomIndex;
@@ -14,20 +13,20 @@ angular.module('rain.weather', [])
       array[randomIndex] = temporaryValue;
     }
     return array;
-  }
+  };
 
   var getPlaylist = function(weather) {
-    Video.getVid(weather).then(function(data){
+    Video.getVid(weather).then(function(data) {
       shuffle(data.items);
       $scope.playlist = data.items;
-      var playlist = data.items.map(function(item){
+      var playlist = data.items.map(function(item) {
         return item.id.videoId;
       });
       var firstVid = playlist.shift();
       playlist = playlist.join(',');
       $scope.data = $sce.trustAsResourceUrl('https://www.youtube.com/embed/' + firstVid + '?playlist=' + playlist + '&autoplay=1&loop=1');
     });
-  }
+  };
 
   $scope.getWeatherByInput = function() {
     Weather.getWeatherByCity($scope.city).then(function(data) {
@@ -35,7 +34,7 @@ angular.module('rain.weather', [])
       getPlaylist(data.list[0].weather[0].main);
     }); 
     $scope.city = '';   
-  }
+  };
 
   $scope.getWeatherGeoLocation = function() {
     return new Promise(function(resolve, reject) {
@@ -53,10 +52,10 @@ angular.module('rain.weather', [])
   };
 
   $scope.playlistClick = function(item, playlist) {
-    var temp = playlist.map(function(item){
+    var temp = playlist.map(function(item) {
       return item.id.videoId;
     });
     var reorder = temp.slice(temp.indexOf(item.id.videoId) + 1).concat(temp.slice(0, temp.indexOf(item.id.videoId)));
     $scope.data = $sce.trustAsResourceUrl('https://www.youtube.com/embed/' + item.id.videoId + '?playlist=' + reorder + '&autoplay=1&loop=1');
-  }
+  };
 });

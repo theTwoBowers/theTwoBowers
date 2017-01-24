@@ -2,9 +2,26 @@ html {
   overflow-x: hidden;
 }
 
+body {
+  background: url('https://source.unsplash.com/category/nature') no-repeat center center fixed; 
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+}
+
+#header {
+  background-color: rgba(0, 0, 0, 0.5);
+  color: #FFFFFF;
+}
+
 #logo {
-  font-size: 30px;
+  font-size: 400%;
   font-family: 'Pacifico';
+}
+
+#search {
+  float: right;
 }
 
 iframe {
@@ -13,6 +30,7 @@ iframe {
 }
 
 #playList {
+  background-color: white;
   box-sizing: border-box;
   overflow-y: scroll;
   overflow-x: hidden;
