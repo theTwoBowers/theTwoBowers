@@ -30,7 +30,8 @@ angular.module('rain.weather', [])
   $scope.getWeatherByInput = function() {
     Weather.getWeatherByCity($scope.city).then(function(data) {
       getPlaylist(data.list[0].weather[0].main);
-    });    
+    }); 
+    $scope.city = '';   
   }
 
   $scope.getWeatherGeoLocation = function() {

@@ -1,55 +1,25 @@
-/*TODO: styling for front-end*/
-#vidContainer {
-  position: absolute; 
-  height: 800px;
-  width: 1200px;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  -webkit-transform: translate(-50%, -50%);
+html {
+  overflow-x: hidden;
 }
-
 #logo {
   font-size: 30px;
   font-family: 'Pacifico';
 }
 
-#search {
-  margin-top: 30px;
-  margin-right: 100px;
-  float: right;
-}
-
-#video {
-  position: relative;
-  top: 50%;
-  left: 40%;
-  transform: translate(-50%, -50%);
-  -webkit-transform: translate(-50%, -50%);
-  height: 480px;
-  width: 854px;
+iframe {
+  height: 400px;
+  border: 0;
 }
 
 #playList {
   box-sizing: border-box;
-  position: relative;
   overflow-y: scroll;
   overflow-x: hidden;
-  float: right;
-  height: 800px;
-  width: 250px;
+  border: 1px solid black;
+  height: 400px;
   text-align: center;
 }
 
-.playListVideo {
-  border: 1px solid black;
-}
-
-.input {
-  font-size: 20px;
-}
-
-li {
-  text-align: center;
-  border: 1px solid black;
+.item {
+  border-bottom: 1px solid black;
 }
