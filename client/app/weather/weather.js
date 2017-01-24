@@ -2,6 +2,8 @@ angular.module('rain.weather', [])
 
 .controller('weatherControl', function($scope, $sce, Weather, Video) {
 
+  $scope.weather = 'Loading...'
+
   var shuffle = function(array) {
     var currentIndex = array.length, temporaryValue, randomIndex;
     while (0 !== currentIndex) {
@@ -29,6 +31,7 @@ angular.module('rain.weather', [])
 
   $scope.getWeatherByInput = function() {
     Weather.getWeatherByCity($scope.city).then(function(data) {
+      $scope.weather = 'Weather: ' + data.list[0].weather[0].main;
       getPlaylist(data.list[0].weather[0].main);
     }); 
     $scope.city = '';   
@@ -43,6 +46,7 @@ angular.module('rain.weather', [])
     })
     .then(function(loc) {
       Weather.getWeatherByCoords(loc[0], loc[1]).then(function(data) {
+        $scope.weather = 'Weather: ' + data.weather[0].main;
         getPlaylist(data.weather[0].main);
       });
     });

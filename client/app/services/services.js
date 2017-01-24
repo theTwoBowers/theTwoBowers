@@ -28,6 +28,7 @@ angular.module('rain.services', [])
     getVid: function(search) {
       // make object play genre based on weather
       // additional changes
+      console.log(search);
       var obj = {
         'Thunderstorm': ['storm', 'wind', 'thunderstruck'],
         'Drizzle': ['drizzle', 'melancholy', 'sad anime', 'rain song'],
@@ -35,7 +36,7 @@ angular.module('rain.services', [])
         'Clouds': ['chill', 'vaporwave', 'cloud rap', 'classical', 'final fantasy vii'],
         'Snow': ['cold', 'cold weather', 'christmas'],
         'Clear': ['salsa', 'meringue', 'brazilian jazz', 'bossa nova', 'nujabes'],
-        'Extreme': ['extreme', 'fire', 'danger'],
+        'Extreme': ['extreme', 'fire', 'danger']
       };
       var queryStr = obj[search] || ['chill', 'vaporwave', 'cloud rap', 'classical', 'final fantasy vii'];
       var randomNum = function() {
