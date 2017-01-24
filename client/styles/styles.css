@@ -8,6 +8,7 @@ html {
 
 iframe {
   height: 400px;
+  border: 0;
 }
 
 #playList {
