@@ -15,7 +15,6 @@ angular.module('rain.services', [])
   };
 })
 
-
 .factory('Video', function($http) {
   return {
     getVid: function(search) {

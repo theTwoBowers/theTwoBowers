@@ -1,23 +1,41 @@
 /*TODO: styling for front-end*/
 
-iframe {
-	width: 50%;
-	height: 50%;
-	position: absolute;
-	left: 25%;
-	top: 20%;
+#vidContainer {
+  position: absolute; 
+  height: 800px;
+  width: 1200px;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  -webkit-transform: translate(-50%, -50%);
+}
+
+#video {
+  position: relative;
+  top: 50%;
+  left: 40%;
+  transform: translate(-50%, -50%);
+  -webkit-transform: translate(-50%, -50%);
+  height: 480px;
+  width: 854px;
 }
 
 #playList {
-	list-style: none;
-	width: 200px;
-	text-align: center;
-	float: right;
-	margin-right: 50px;
-	margin-top: 9.5%;
+  box-sizing: border-box;
+  position: relative;
+  overflow-y: scroll;
+  overflow-x: hidden;
+  float: right;
+  height: 800px;
+  width: 250px;
+  text-align: center;
+}
+
+.playListVideo {
+  border: 1px solid black;
 }
 
 li {
-	text-align: center;
-	border: 1px solid black;
+  text-align: center;
+  border: 1px solid black;
 }
