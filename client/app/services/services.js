@@ -34,7 +34,7 @@ angular.module('rain.services', [])
         'Rain': ['sad', 'melancholy', 'sad anime', 'rain song'],
         'Clouds': ['chill', 'vaporwave', 'cloud rap', 'classical', 'final fantasy vii'],
         'Snow': ['cold', 'cold weather', 'christmas'],
-        'Clear': ['salsa', 'meringue', 'brazilian jazz', 'bossa nova', 'nujabes'],
+        'Clear': ['salsa', 'brazilian jazz', 'bossa nova', 'nujabes'],
         'Extreme': ['extreme', 'fire', 'danger'],
       };
       var queryStr = obj[search] || ['chill', 'vaporwave', 'cloud rap', 'classical', 'final fantasy vii'];
