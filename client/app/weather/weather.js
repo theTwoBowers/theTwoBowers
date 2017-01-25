@@ -1,7 +1,7 @@
 angular.module('rain.weather', [])
 
 .controller('weatherControl', ['$scope', '$sce', 'Weather', 'Video', 'Comments', function($scope, $sce, Weather, Video, Comments) {
-  $scope.height = screen.height - 400;
+  $scope.height = screen.height / 1.3;
   $scope.weather = 'Loading...';
   
   var shuffle = function(array) {
@@ -25,13 +25,15 @@ angular.module('rain.weather', [])
       });
       var firstVid = playlist.shift();
       playlist = playlist.join(',');
-      $scope.data = $sce.trustAsResourceUrl('https://www.youtube.com/embed/' + firstVid + '?playlist=' + playlist + '&autoplay=1&loop=1');
+      $scope.data = $sce.trustAsResourceUrl('https://www.youtube.com/embed/' + firstVid + '?playlist=' + playlist + '&autoplay=1&loop=1&iv_load_policy=3');
     });
   };
 
   $scope.getWeatherByInput = function() {
     Weather.getWeatherByCity($scope.city).then(function(data) {
+      console.log(data.list[0].weather[0].main);
       $scope.weather = 'Weather: ' + data.list[0].weather[0].main;
+      $scope.location = 'Location: ' + data.city.name + ', ' + data.city.country;
       getPlaylist(data.list[0].weather[0].main);
     }); 
     $scope.city = '';   
@@ -47,6 +49,7 @@ angular.module('rain.weather', [])
     .then(function(loc) {
       Weather.getWeatherByCoords(loc[0], loc[1]).then(function(data) {
         $scope.weather = 'Weather: ' + data.weather[0].main;
+        $scope.location = 'Location: ' + data.name + ', ' + data.sys.country;
         getPlaylist(data.weather[0].main);
       });
     });

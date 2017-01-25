@@ -8,6 +8,7 @@ angular.module('rain.services', [])
         method: 'GET',
         url: 'http://api.openweathermap.org/data/2.5/weather?lat=' + lat + '&lon=' + lon + '&appid=07a96fec5d332a2798fa83aba696d9f2'
       }).then(function(resp) {
+        console.log(resp);
         return resp.data;
       });
     },
@@ -58,9 +59,13 @@ angular.module('rain.services', [])
           videoEmbeddable: true,
           key: 'AIzaSyBWzdeA8Kc4DD__k7IgNKTblq0dAMXm0xs',
           q: randomGenre + ' song',
+          videoCategoryId: '10', //10 is the category for 'Music'
+          videoDefinition: 'high', //all videos must be HD
+          //videoDuration: 'short', //limits videos returned to 4mins
           maxResults: 10
         }
       }).then(function(resp) {
+        console.log(resp);
         return resp.data;
       });
     }
