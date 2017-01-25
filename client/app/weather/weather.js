@@ -1,7 +1,9 @@
 angular.module('rain.weather', [])
 
 .controller('weatherControl', function($scope, $sce, Weather, Video, Comments) {
+  $scope.height = screen.height - 400;
   $scope.weather = 'Loading...';
+  
   var shuffle = function(array) {
     var currentIndex = array.length, temporaryValue, randomIndex;
     while (0 !== currentIndex) {
@@ -16,6 +18,7 @@ angular.module('rain.weather', [])
 
   var getPlaylist = function(weather) {
     Video.getVid(weather).then(function(data) {
+      console.log(screen.height);
       shuffle(data.items);
       $scope.playlist = data.items;
       var playlist = data.items.map(function(item) {
