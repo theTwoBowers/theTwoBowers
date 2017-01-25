@@ -30,13 +30,14 @@ iframe {
 }
 
 #playList {
-  background-color: white;
+  background-color: rgba(0, 0, 0, 0.5);
   box-sizing: border-box;
   overflow-y: scroll;
   overflow-x: hidden;
   border: 1px solid black;
   height: 400px;
   text-align: center;
+  color: white;
 }
 
 .item {
