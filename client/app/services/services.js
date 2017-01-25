@@ -36,7 +36,9 @@ angular.module('rain.services', [])
         'Snow': ['cold', 'cold weather', 'christmas'],
         'Clear': ['salsa', 'brazilian jazz', 'bossa nova', 'nujabes'],
         'Extreme': ['extreme', 'fire', 'danger'],
-        //throw something in here for 'Fog'
+        //TODO - throw something in here for 'Fog' and 'Mist'
+        //'Fog': [],
+        //'Mist': []
       };
       var queryStr = obj[search] || ['chill', 'vaporwave', 'cloud rap', 'classical', 'final fantasy vii'];
       var randomNum = function() {
