@@ -1,8 +1,7 @@
 angular.module('rain.weather', [])
 
-.controller('weatherControl', function($scope, $sce, Weather, Video) {
+.controller('weatherControl', function($scope, $sce, Weather, Video, Comments) {
   $scope.weather = 'Loading...';
-
   var shuffle = function(array) {
     var currentIndex = array.length, temporaryValue, randomIndex;
     while (0 !== currentIndex) {
@@ -57,5 +56,15 @@ angular.module('rain.weather', [])
     });
     var reorder = temp.slice(temp.indexOf(item.id.videoId) + 1).concat(temp.slice(0, temp.indexOf(item.id.videoId)));
     $scope.data = $sce.trustAsResourceUrl('https://www.youtube.com/embed/' + item.id.videoId + '?playlist=' + reorder + '&autoplay=1&loop=1');
+  };
+
+  Comments.getComments().then(function(comments) {
+    $scope.comments = comments;
+  });
+
+  $scope.postComment = function() {
+    Comments.postComment().then(function(data) {
+      console.log('successful post: ', data);
+    });
   };
 });

@@ -57,4 +57,22 @@ angular.module('rain.services', [])
       });
     }
   };
+})
+
+.factory('Comments', function($http) {
+  return {
+    getComments: function() {
+      return $http({
+        method: 'GET',
+        url: '/api/getComments'
+      }).then(function(resp) {
+        console.log('success on get: ', resp.data);
+        return resp.data;
+      }, function(error) {
+        if (error) {
+          console.log('error occurred: ', error);
+        }
+      });
+    }
+  };
 });

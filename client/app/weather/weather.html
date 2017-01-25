@@ -26,3 +26,15 @@
     </div>
   </div>
 </div>
+<div>
+  <div ng-repeat="comment in comments">
+    {{comment.userName}}
+    {{comment.timeStamp}}
+    {{comment.comment}}
+    
+  </div>
+  <form>
+    <input ng-model="commentInput">
+    <button ng-click="addComment()">Add Comment</button>
+  </form>
+</div>
