@@ -8,7 +8,7 @@
 </div>
 
 <div ng-init="getWeatherGeoLocation()" class="row" style="height: {{ height }}px">
-  <div class="col-sm-3" id="weather">
+  <div class="col-xs-3" id="weather">
     <span id="info">{{ weather }}<br>{{ location }}</span><br>
     <div id="comments" style="height: {{ height / 1.2 }}px">
       <span class="comment" ng-repeat="whatever in playlist">
@@ -29,7 +29,7 @@
     </div>
   </div>
 
-  <iframe class="col-md-6" src="{{ data }}" allowfullscreen="true"></iframe>
+  <iframe class="col-xs-6" src="{{ data }}" allowfullscreen="true"></iframe>
 
   <div id="playList" class="col-xs-3">
     <div class="item" ng-Repeat="item in playlist track by $index">
