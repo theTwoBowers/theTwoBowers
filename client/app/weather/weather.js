@@ -18,7 +18,6 @@ angular.module('rain.weather', [])
 
   var getPlaylist = function(weather) {
     Video.getVid(weather).then(function(data) {
-      console.log(screen.height);
       shuffle(data.items);
       $scope.playlist = data.items;
       var playlist = data.items.map(function(item) {
