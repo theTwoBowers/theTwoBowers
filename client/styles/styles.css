@@ -1,5 +1,6 @@
 html {
   overflow-x: hidden;
+  width: 99%;
 }
 
 body {
@@ -10,15 +11,28 @@ body {
   background-size: cover;
 }
 
+#weather {
+  background-color: rgba(0, 0, 0, 0.5);
+  height: 80%;
+  border: 1px solid black;
+  overflow-y: scroll;
+}
+
 #header {
   background-color: rgba(0, 0, 0, 0.5);
-  color: #FFFFFF;
+  width: 101%;
   margin-top: 0;
 }
 
 #logo {
   font-size: 400%;
   font-family: 'Pacifico';
+  color: #FFFFFF;
+}
+
+#info {
+  font-size: 200%;
+  color: #FFFFFF;
 }
 
 #search {
@@ -32,12 +46,10 @@ iframe {
 
 #playList {
   background-color: rgba(0, 0, 0, 0.5);
-  box-sizing: border-box;
   overflow-y: scroll;
   overflow-x: hidden;
   border: 1px solid black;
   height: 80%;
-  text-align: center;
   color: white;
 }
 
