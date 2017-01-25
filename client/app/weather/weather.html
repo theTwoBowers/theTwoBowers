@@ -8,14 +8,28 @@
 </div>
 
 <div ng-init="getWeatherGeoLocation()" class="row" style="height: {{ height }}px">
-  <div class="col-xs-3" id="weather">
+  <div class="col-sm-3" id="weather">
     <span id="info">{{ weather }}<br>{{ location }}</span><br>
-    <p style="color: #FFF" ng-repeat="whatever in playlist">
-      Anything can go here honestly... Anything.
-    </p>
+    <div id="comments" style="height: {{ height / 1.2 }}px">
+      <span class="comment" ng-repeat="whatever in playlist">
+        Anything can go here honestly... Anything.<br><br>
+      </span>
+    </div>
+
+    <div id="input">
+      <div ng-repeat="comment in comments">
+        {{comment.userName}}
+        {{comment.timeStamp}}
+        {{comment.comment}}
+      </div>
+      <form>
+        <input ng-model="commentInput">
+        <button ng-click="addComment()">Add Comment</button>
+      </form>
+    </div>
   </div>
 
-  <iframe class="col-xs-6" src="{{ data }}" allowfullscreen="true"></iframe>
+  <iframe class="col-md-6" src="{{ data }}" allowfullscreen="true"></iframe>
 
   <div id="playList" class="col-xs-3">
     <div class="item" ng-Repeat="item in playlist track by $index">
@@ -27,16 +41,4 @@
       </div>
     </div>
   </div>
-</div>
-
-<div class="row">
-  <div ng-repeat="comment in comments">
-    {{comment.userName}}
-    {{comment.timeStamp}}
-    {{comment.comment}}
-  </div>
-  <form>
-    <input ng-model="commentInput">
-    <button ng-click="addComment()">Add Comment</button>
-  </form>
 </div>
