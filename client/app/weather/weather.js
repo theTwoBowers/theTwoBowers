@@ -1,6 +1,6 @@
 angular.module('rain.weather', [])
 
-.controller('weatherControl', function($scope, $sce, Weather, Video, Comments) {
+.controller('weatherControl', ['$scope', '$sce', 'Weather', 'Video', 'Comments', function($scope, $sce, Weather, Video, Comments) {
   $scope.height = screen.height - 400;
   $scope.weather = 'Loading...';
   
@@ -69,4 +69,4 @@ angular.module('rain.weather', [])
       console.log('successful post: ', data);
     });
   };
-});
+}]);

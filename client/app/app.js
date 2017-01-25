@@ -5,7 +5,7 @@ angular.module('rain', [
 ])
 
 //TODO: client side routing
-.config(function($routeProvider) {
+.config(['$routeProvider', function($routeProvider) {
   $routeProvider
   .when('/', {
     templateUrl: 'app/weather/weather.html',
@@ -14,4 +14,4 @@ angular.module('rain', [
   .otherwise({  
     redirectTo: '/'  
   });    
-});
+}]);

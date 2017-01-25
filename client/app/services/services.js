@@ -1,7 +1,7 @@
 angular.module('rain.services', [])
 
 //TODO: angular factories/services
-.factory('Weather', function($http) {
+.factory('Weather', ['$http', function($http) {
   return {
     getWeatherByCoords: function(lat, lon) {
       return $http({
@@ -21,9 +21,9 @@ angular.module('rain.services', [])
       });
     }  
   };
-})
+}])
 
-.factory('Video', function($http) {
+.factory('Video', ['$http', function($http) {
   return {
     getVid: function(search) {
       // make object play genre based on weather
@@ -65,9 +65,9 @@ angular.module('rain.services', [])
       });
     }
   };
-})
+}])
 
-.factory('Comments', function($http) {
+.factory('Comments', ['$http', function($http) {
   return {
     getComments: function() {
       return $http({
@@ -78,4 +78,4 @@ angular.module('rain.services', [])
       });
     }
   };
-});
+}]);

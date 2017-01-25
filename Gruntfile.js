@@ -7,11 +7,11 @@ module.exports = function(grunt) {
       },
       dist: {
         src: ['client/**/*.js'],
-        dest: 'dist/<%= pkg.name %>.js'
+        dest: 'client/dist/<%= pkg.name %>.js'
       }
     },
 
-    clean: ['dist/<%= pkg.name %>.js'],
+    clean: ['client/dist/<%= pkg.name %>.js'],
 
     nodemon: {
       dev: {
@@ -22,7 +22,7 @@ module.exports = function(grunt) {
     uglify: {
       my_target: {
         files: {
-          'dist/build.min.js': ['dist/<%= pkg.name %>.js']
+          'client/dist/build.min.js': ['client/dist/<%= pkg.name %>.js']
         }
       }
     },
@@ -33,7 +33,7 @@ module.exports = function(grunt) {
           expand: true,
           cwd: 'client/styles',
           src: ['*.css', '!*.min.css'],
-          dest: 'dist',
+          dest: 'client/dist',
           ext: '.min.css'
         }]
       }
