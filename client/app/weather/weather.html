@@ -1,19 +1,17 @@
 <div class="page-header" id="header">
   <span id="logo">Rain Song</span>
-  <div>
-    <form ng-submit="getWeatherByInput()" id="search">
-      <input ng-model="city" placeholder="Search by city"></input>
-      <button>Search</button>  
-    </form>
-  </div>
 
-  <div id="weather">
-    <h1>{{ weather }}</h1>
-  </div>
+  <form ng-submit="getWeatherByInput()" id="search">
+    <input ng-model="city" placeholder="Search by city"></input>
+    <button>Search</button>  
+  </form>
 </div>
 
+<div id="weather">
+  <h1 id="logo">{{ weather }}</h1>
+</div>
 
-<div ng-init="getWeatherGeoLocation()" class="row">
+<div ng-init="getWeatherGeoLocation()" class="row" style="height: {{ height }}px">
   <div class="col-xs-3"></div>
 
   <iframe class="col-xs-6" src="{{ data }}" allowfullscreen="true"></iframe>
@@ -26,12 +24,12 @@
     </div>
   </div>
 </div>
+
 <div>
   <div ng-repeat="comment in comments">
     {{comment.userName}}
     {{comment.timeStamp}}
     {{comment.comment}}
-    
   </div>
   <form>
     <input ng-model="commentInput">

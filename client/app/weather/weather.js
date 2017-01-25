@@ -1,7 +1,9 @@
 angular.module('rain.weather', [])
 
 .controller('weatherControl', function($scope, $sce, Weather, Video, Comments) {
+  $scope.height = screen.height - 400;
   $scope.weather = 'Loading...';
+  
   var shuffle = function(array) {
     var currentIndex = array.length, temporaryValue, randomIndex;
     while (0 !== currentIndex) {
