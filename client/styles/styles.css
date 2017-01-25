@@ -13,6 +13,7 @@ body {
 #header {
   background-color: rgba(0, 0, 0, 0.5);
   color: #FFFFFF;
+  margin-top: 0;
 }
 
 #logo {

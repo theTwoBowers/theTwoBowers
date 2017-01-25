@@ -36,11 +36,19 @@ angular.module('rain.services', [])
         'Snow': ['cold', 'cold weather', 'christmas'],
         'Clear': ['salsa', 'brazilian jazz', 'bossa nova', 'nujabes'],
         'Extreme': ['extreme', 'fire', 'danger'],
+        //TODO - throw something in here for 'Fog' and 'Mist'
+        //'Fog': [],
+        //'Mist': []
       };
       var queryStr = obj[search] || ['chill', 'vaporwave', 'cloud rap', 'classical', 'final fantasy vii'];
       var randomNum = function() {
-        return Math.floor(Math.random() * (obj[search].length));
+        return Math.floor(Math.random() * (queryStr.length));
       };
+      var randomGenre = queryStr[randomNum()];
+
+      console.log(search); //the current weather type
+      console.log(randomGenre); //the genre output by our obj
+
       return $http({
         method: 'GET',
         url: 'https://www.googleapis.com/youtube/v3/search',
@@ -49,7 +57,7 @@ angular.module('rain.services', [])
           type: 'video',
           videoEmbeddable: true,
           key: 'AIzaSyBWzdeA8Kc4DD__k7IgNKTblq0dAMXm0xs',
-          q: queryStr[randomNum()] + ' song',
+          q: randomGenre + ' song',
           maxResults: 10
         }
       }).then(function(resp) {
@@ -66,12 +74,7 @@ angular.module('rain.services', [])
         method: 'GET',
         url: '/api/getComments'
       }).then(function(resp) {
-        console.log('success on get: ', resp.data);
         return resp.data;
-      }, function(error) {
-        if (error) {
-          console.log('error occurred: ', error);
-        }
       });
     }
   };
