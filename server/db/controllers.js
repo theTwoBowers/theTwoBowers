@@ -3,7 +3,7 @@ var Comment = Models.Comment;
 var User = Models.User;
 
 module.exports = {
-  commentController: {
+  comment: {
     get: function(req, res) {
       Comment.find().then(function(resp) {
         res.json(resp);
@@ -17,6 +17,15 @@ module.exports = {
       Comment.create(params).then(function(resp) {
         res.sendStatus(201);
       });
-    }    
+    }
+  },
+
+  user: {
+    getUser: function(req, res) {
+      console.log(req.query);
+      User.find({ /* userName: whatever they try to create*/ }).then(function(users) {
+        res.json(resp);
+      });
+    }
   }
 };

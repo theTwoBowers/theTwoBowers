@@ -1,6 +1,6 @@
 angular.module('rain.weather', [])
 
-.controller('weatherControl', ['$scope', '$sce', '$window', 'Weather', 'Video', 'Comments', function($scope, $sce, $window, Weather, Video, Comments) {
+.controller('weatherControl', ['$scope', '$sce', '$window', 'Weather', 'Video', 'Comments', 'Users', function($scope, $sce, $window, Weather, Video, Comments, Users) {
   $scope.height = screen.height / 1.2;
   $scope.weather = 'Loading...';
   
@@ -64,7 +64,7 @@ angular.module('rain.weather', [])
   };
 
   Comments.getComments().then(function(comments) {
-    $scope.comments = comments;
+    $scope.comments = comments.reverse();
   });
 
   $scope.postComment = function() {
@@ -76,8 +76,14 @@ angular.module('rain.weather', [])
     Comments.postComments(data).then(function(data) {
       console.log('successful post: ', data);
       Comments.getComments().then(function(comments) {
-        $scope.comments = comments;
+        $scope.comments = comments.reverse();
       });
+    });
+  };
+
+  $scope.createUser = function(userName) {
+    Users.getUser(userName).then(function(data) {
+      console.log(data);
     });
   };
 }]);
