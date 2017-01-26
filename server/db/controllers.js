@@ -21,8 +21,9 @@ module.exports = {
   },
 
   user: {
-    getUsers: function() {
-      User.find().then(function(users) {
+    getUser: function(req, res) {
+      console.log(req.query);
+      User.find({ /* userName: whatever they try to create*/ }).then(function(users) {
         res.json(resp);
       });
     }

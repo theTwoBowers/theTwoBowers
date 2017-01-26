@@ -29,4 +29,4 @@ app.use(express.static(__dirname + '/../client'));
 app.get('/api/comments', commentController.get); //<-- also should go to routing
 app.post('/api/comments', commentController.post);
 
-app.get('/api/users', userController.getUsers);
+app.get('/api/users', userController.getUser);

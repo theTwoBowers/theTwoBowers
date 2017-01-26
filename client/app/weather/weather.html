@@ -1,16 +1,19 @@
 <div class="page-header" id="header">
-  <span id="logo">Rain Song</span>
+    <span id="logo">Rain Song</span>
 
-  <form ng-submit="getWeatherByInput()" id="search">
-    <input ng-model="city" placeholder="Search by city"></input>
-    <button>Search</button>  
-  </form>
+    <button>Create an account</button>
+    <button>Log in</button>
+    
+    <form ng-submit="getWeatherByInput()" id="search">
+      <input ng-model="city" placeholder="Search by city"></input>
+      <button>{{  }}</button>  
+    </form><br>
 </div>
 
 <div ng-init="getWeatherGeoLocation()" class="row" style="height: {{ height }}px">
   <iframe class="col-xs-9" id="video" src="{{ data }}" allowfullscreen="true"></iframe>
 
-  <div id="playList" class="col-xs-3" style="max-height: {{ height * 1.6 }}px">
+  <div id="playList" class="col-xs-3">
     <div class="item" ng-Repeat="item in playlist track by $index">
       <div class="row" ng-Click="playlistClick(item, playlist)">
         <img class="col-xs-6" id="thumb" src="{{ item.snippet.thumbnails.default.url }}" />
@@ -22,8 +25,14 @@
   </div>
 
   <div class="col-xs-9" id="weather">
-    <span id="info">{{ weather }}<br>{{ location }}</span><br>
-    <div id="comments" style="height: {{ height / 2.2 }}px">
+    <span id="info">{{ weather }}<br>{{ location }}</span>
+
+    <form ng-submit="getWeatherByInput()" id="search">
+      <input ng-model="city" placeholder="Search by city"></input>
+      <button>Search</button>  
+    </form><br>
+
+    <div id="comments" style="height: {{ height / 2 }}px">
       <h1 id="logo">Comments</h1>
       <span class="comment" ng-repeat="comment in comments">
         <p>

@@ -91,4 +91,18 @@ angular.module('rain.services', [])
       });
     }
   };
+}])
+
+.factory('Users', ['$http', function($http) {
+  return {
+    getUser: function(userName) {
+      return $http({
+        method: 'GET',
+        url: '/api/users',
+        params: { userName: userName }
+      }).then(function(resp) {
+        return resp.data;
+      });
+    }
+  };
 }]);
