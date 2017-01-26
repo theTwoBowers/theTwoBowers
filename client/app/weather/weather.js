@@ -1,7 +1,7 @@
 angular.module('rain.weather', [])
 
 .controller('weatherControl', ['$scope', '$sce', 'Weather', 'Video', 'Comments', function($scope, $sce, Weather, Video, Comments) {
-  $scope.height = screen.height / 1.3;
+  $scope.height = screen.height / 1.2;
   $scope.weather = 'Loading...';
   
   var shuffle = function(array) {
