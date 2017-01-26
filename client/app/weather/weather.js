@@ -74,7 +74,6 @@ angular.module('rain.weather', [])
     };
     $scope.commentInput = '';
     Comments.postComments(data).then(function(data) {
-      console.log('successful post: ', data);
       Comments.getComments().then(function(comments) {
         $scope.comments = comments.reverse();
       });
@@ -86,4 +85,21 @@ angular.module('rain.weather', [])
       console.log(data);
     });
   };
+
+
+  if (annyang) {
+    var commands = {
+      'Play songs in *location': function(location) {
+        Weather.getWeatherByCity(location).then(function(data) {
+          console.log(data.list[0].weather[0].main);
+          $scope.weather = 'Weather: ' + data.list[0].weather[0].main;
+          $scope.location = 'Location: ' + data.city.name + ', ' + data.city.country;
+          getPlaylist(data.list[0].weather[0].main);
+        });
+      }
+    };
+    annyang.addCommands(commands);
+    annyang.start();
+  }
+
 }]);
