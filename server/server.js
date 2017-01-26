@@ -1,15 +1,19 @@
 var express = require('express');
 var morgan = require('morgan'); // logs server interactions
 var bodyParser = require('body-parser');
-var app = express();
-var dbModule = require('./db/index.js');
-var controller = require('./controllers/index');
+var mongoose = require('mongoose');
+var controller = require('./db/controllers'); //<-- this should go into routing
 
-var model = dbModule.model;
-var db = dbModule.db;
+mongoose.connect('mongodb://localhost/twoBowers');
+var db = mongoose.connection;
+
+var commentController = controller.commentController; //<-- to routing
+
+var app = express();
 
 db.once('open', function() {
   console.log('Connected to MongoDB');
+
   var port = process.env.PORT || 3000;
   app.listen(port, function() {
     console.log('I am listening to port:', port);
@@ -21,4 +25,4 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended: true}));
 app.use(express.static(__dirname + '/../client'));
 
-app.get('/api/getComments', controller.comments.get);
+app.get('/api/getComments', commentController.get); //<-- also should go to routing

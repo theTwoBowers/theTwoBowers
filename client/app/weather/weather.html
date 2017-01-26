@@ -24,17 +24,17 @@
   <div class="col-xs-9" id="weather">
     <span id="info">{{ weather }}<br>{{ location }}</span><br>
     <div id="comments" style="height: {{ height / 2.2 }}px">
-      <span class="comment" ng-repeat="whatever in playlist">
-        Anything can go here honestly... Anything.<br><br>
+      <h1 id="logo">Comments</h1>
+      <span class="comment" ng-repeat="comment in comments">
+        <p>
+          <span>{{ comment.userName }}</span>
+          <span>{{ comment.timeStamp }}</span>
+          <span>{{ comment.comment }}</span>
+        </p>
       </span>
     </div>
 
     <div id="input">
-      <div ng-repeat="comment in comments">
-        {{comment.userName}}
-        {{comment.timeStamp}}
-        {{comment.comment}}
-      </div>
       <form>
         <input ng-model="commentInput">
         <button ng-click="addComment()">Add Comment</button>

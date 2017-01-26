@@ -8,7 +8,6 @@ angular.module('rain.services', [])
         method: 'GET',
         url: 'http://api.openweathermap.org/data/2.5/weather?lat=' + lat + '&lon=' + lon + '&appid=07a96fec5d332a2798fa83aba696d9f2'
       }).then(function(resp) {
-        console.log(resp);
         return resp.data;
       });
     },
@@ -65,7 +64,6 @@ angular.module('rain.services', [])
           maxResults: 20
         }
       }).then(function(resp) {
-        console.log(resp);
         return resp.data;
       });
     }
