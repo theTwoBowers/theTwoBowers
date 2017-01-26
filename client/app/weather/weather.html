@@ -35,9 +35,9 @@
     </div>
 
     <div id="input">
-      <form>
-        <input ng-model="commentInput">
-        <button ng-click="addComment()">Add Comment</button>
+      <form ng-Submit="postComment()">
+        <input ng-model="commentInput" />
+        <button>Add Comment</button>
       </form>
     </div>
   </div>

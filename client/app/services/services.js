@@ -75,9 +75,19 @@ angular.module('rain.services', [])
     getComments: function() {
       return $http({
         method: 'GET',
-        url: '/api/getComments'
+        url: '/api/comments'
       }).then(function(resp) {
         return resp.data;
+      });
+    },
+    
+    postComments: function(data) {
+      return $http({
+        method: 'POST',
+        url: '/api/comments',
+        data: data
+      }).then(function(resp) {
+        return resp;
       });
     }
   };
