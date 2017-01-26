@@ -25,4 +25,5 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended: true}));
 app.use(express.static(__dirname + '/../client'));
 
-app.get('/api/getComments', commentController.get); //<-- also should go to routing
+app.get('/api/comments', commentController.get); //<-- also should go to routing
+app.post('/api/comments', commentController.post);
