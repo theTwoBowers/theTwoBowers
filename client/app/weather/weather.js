@@ -1,6 +1,6 @@
 angular.module('rain.weather', [])
 
-.controller('weatherControl', ['$scope', '$sce', 'Weather', 'Video', 'Comments', '$window', function($scope, $sce, Weather, Video, Comments, $window) {
+.controller('weatherControl', ['$scope', '$sce', '$window', 'Weather', 'Video', 'Comments', function($scope, $sce, $window, Weather, Video, Comments) {
   $scope.height = screen.height / 1.2;
   $scope.weather = 'Loading...';
   
