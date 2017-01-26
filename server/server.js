@@ -7,7 +7,7 @@ var controller = require('./db/controllers'); //<-- this should go into routing
 mongoose.connect('mongodb://localhost/twoBowers');
 var db = mongoose.connection;
 
-var commentController = controller.commentController; //<-- to routing
+var commentController = controller.comment; //<-- to routing
 var userController = controller.user;
 
 var app = express();
