@@ -69,12 +69,15 @@ angular.module('rain.weather', [])
 
   $scope.postComment = function() {
     var data = {
-      userName: $window.localStorage.userName,
+      userName: $window.localStorage.userName || 'Anonymous',
       comment: $scope.commentInput
     };
     $scope.commentInput = '';
-    Comments.postComment(data).then(function(data) {
+    Comments.postComments(data).then(function(data) {
       console.log('successful post: ', data);
+      Comments.getComments().then(function(comments) {
+        $scope.comments = comments;
+      });
     });
   };
 }]);
