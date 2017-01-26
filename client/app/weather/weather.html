@@ -8,9 +8,23 @@
 </div>
 
 <div ng-init="getWeatherGeoLocation()" class="row" style="height: {{ height }}px">
-  <div class="col-xs-3" id="weather">
+
+  <iframe class="col-xs-9" id="video" src="{{ data }}" allowfullscreen="true"></iframe>
+
+  <div id="playList" class="col-xs-3" style="max-height: {{ height * 1.6 }}px">
+    <div class="item" ng-Repeat="item in playlist track by $index">
+      <div class="row" ng-Click="playlistClick(item, playlist)">
+        <img class="col-xs-6" id="thumb" src="{{ item.snippet.thumbnails.default.url }}" />
+        <div class="col-xs-6">
+          <span>{{ item.snippet.title }}</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="col-xs-9" id="weather">
     <span id="info">{{ weather }}<br>{{ location }}</span><br>
-    <div id="comments" style="height: {{ height / 1.2 }}px">
+    <div id="comments" style="height: {{ height / 2.2 }}px">
       <span class="comment" ng-repeat="whatever in playlist">
         Anything can go here honestly... Anything.<br><br>
       </span>
@@ -26,19 +40,6 @@
         <input ng-model="commentInput">
         <button ng-click="addComment()">Add Comment</button>
       </form>
-    </div>
-  </div>
-
-  <iframe class="col-xs-6" src="{{ data }}" allowfullscreen="true"></iframe>
-
-  <div id="playList" class="col-xs-3">
-    <div class="item" ng-Repeat="item in playlist track by $index">
-      <div class="row" ng-Click="playlistClick(item, playlist)">
-        <img class="col-xs-6" id="thumb" src="{{ item.snippet.thumbnails.default.url }}" />
-        <div class="col-xs-6">
-          <span>{{ item.snippet.title }}</span>
-        </div>
-      </div>
     </div>
   </div>
 </div>

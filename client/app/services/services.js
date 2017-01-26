@@ -62,7 +62,7 @@ angular.module('rain.services', [])
           videoCategoryId: '10', //10 is the category for 'Music'
           videoDefinition: 'high', //all videos must be HD
           //videoDuration: 'short', //limits videos returned to 4mins
-          maxResults: 10
+          maxResults: 20
         }
       }).then(function(resp) {
         console.log(resp);
