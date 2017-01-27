@@ -3,6 +3,7 @@ angular.module('rain.weather', [])
 .controller('weatherControl', ['$scope', '$sce', '$window', 'Weather', 'Video', 'Comments', 'Users', function($scope, $sce, $window, Weather, Video, Comments, Users) {
   $scope.height = screen.height / 1.2;
   $scope.weather = 'Loading...';
+  $scope.error = '';
   
   var shuffle = function(array) {
     var currentIndex = array.length, temporaryValue, randomIndex;
@@ -79,9 +80,21 @@ angular.module('rain.weather', [])
     });
   };
 
-  $scope.createUser = function(userName) {
-    Users.getUser(userName).then(function(data) {
-      console.log(data);
+  $scope.getUser = function() {
+    var user = {
+      userName: $scope.username,
+      password: $scope.password
+    };
+
+    Users.getUser({ userName: $scope.username }).then(function(data) {
+      if (!data.length) {
+        Users.createUser(user).then(function(data) {
+          console.log(data);
+        });
+        $scope.error = 'Account created!';
+      } else {
+        $scope.error = 'Username already taken.';
+      }
     });
   };
 
@@ -92,6 +105,7 @@ angular.module('rain.weather', [])
       annyang.abort();
     }
   };
+
   if (annyang) {
     var commands = {
       'Play songs in *location': function(location) {

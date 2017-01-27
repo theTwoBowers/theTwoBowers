@@ -23,8 +23,15 @@ module.exports = {
   user: {
     getUser: function(req, res) {
       console.log(req.query);
-      User.find({ /* userName: whatever they try to create*/ }).then(function(users) {
+      User.find(req.query).then(function(resp) {
         res.json(resp);
+      });
+    },
+
+    createUser: function(req, res) {
+      User.create(req.body).then(function(resp) {
+        console.log(resp);
+        res.sendStatus(201);
       });
     }
   }

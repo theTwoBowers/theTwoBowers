@@ -18,7 +18,7 @@ db.once('open', function() {
   var port = process.env.PORT || 3000;
   app.listen(port, function() {
     console.log('I am listening to port:', port);
-  });  
+  });
 });
 
 app.use(morgan('dev'));
@@ -30,3 +30,4 @@ app.get('/api/comments', commentController.get); //<-- also should go to routing
 app.post('/api/comments', commentController.post);
 
 app.get('/api/users', userController.getUser);
+app.post('/api/users', userController.createUser);
