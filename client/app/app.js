@@ -4,7 +4,6 @@ angular.module('rain', [
   'ngRoute'
 ])
 
-//TODO: client side routing
 .config(['$routeProvider', function($routeProvider) {
   $routeProvider
   .when('/', {
