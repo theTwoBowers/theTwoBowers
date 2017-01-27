@@ -86,7 +86,11 @@ angular.module('rain.weather', [])
   };
 
   $scope.mic = function () {
-    annyang.start();
+    if (!annyang.isListening()) {
+      annyang.start();
+    } else {
+      annyang.abort();
+    }
   };
   if (annyang) {
     var commands = {
