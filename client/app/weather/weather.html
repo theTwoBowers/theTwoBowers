@@ -1,14 +1,14 @@
 <div class="page-header" id="header">
-  <span id="logo">Rain Song</span>
+  <span ng-init="loggedIn()" id="logo">Rain Song</span>
 
-  <span id="user">{{ user }}</span>
+  <span id="user">{{ currentUser }}</span>
   
   <form ng-submit="getWeatherByInput()" id="search">
     <input ng-model="city" placeholder="Search by city"></input>
     <button>Search</button>  
   </form><br>
 
-  <form ng-submit="getUser()" id="create">
+  <form ng-submit="createUser()" id="create">
     <input ng-model="username" placeholder="Username"></input>
     <input ng-model="password" placeholder="Password"></input>
     <button>Create Account</button>  
@@ -34,11 +34,12 @@
   <div class="col-xs-9" id="weather">
     <span id="info">{{ weather }}<br>{{ location }}</span>
 
+    <button ng-click="mic()" id="search">Annyang</button>
     <form ng-submit="getWeatherByInput()" id="search">
       <input ng-model="city" placeholder="Search by city"></input>
       <button>Search</button>  
     </form><br>
-    <button ng-click="mic()">Annyang</button>
+    
     <div id="comments" style="height: {{ height / 2 }}px">
       <h1 id="logo">Comments</h1>
       <span class="comment" ng-repeat="comment in comments">

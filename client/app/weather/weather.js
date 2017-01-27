@@ -4,6 +4,10 @@ angular.module('rain.weather', [])
   $scope.height = screen.height / 1.2;
   $scope.weather = 'Loading...';
   $scope.error = '';
+
+  if ($window.localStorage.userName) {
+    $scope.currentUser = $window.localStorage.userName;
+  }
   
   var shuffle = function(array) {
     var currentIndex = array.length, temporaryValue, randomIndex;
@@ -33,7 +37,8 @@ angular.module('rain.weather', [])
   $scope.getWeatherByInput = function() {
     Weather.getWeatherByCity($scope.city).then(function(data) {
       $scope.weather = 'Weather: ' + data.list[0].weather[0].main;
-      $scope.location = 'Location: ' + data.city.name + ', ' + data.city.country;
+      $scope.loc = data.city.name + ', ' + data.city.country;
+      $scope.location = 'Location: ' + $scope.loc;
       getPlaylist(data.list[0].weather[0].main);
     }); 
     $scope.city = '';   
@@ -48,9 +53,14 @@ angular.module('rain.weather', [])
     })
     .then(function(loc) {
       Weather.getWeatherByCoords(loc[0], loc[1]).then(function(data) {
-        $scope.weather = 'Weather: ' + data.weather[0].main;
-        $scope.location = 'Location: ' + data.name + ', ' + data.sys.country;
-        getPlaylist(data.weather[0].main);
+        if ($scope.loc !== data.name + ', ' + data.sys.country) {
+          $scope.weather = 'Weather: ' + data.weather[0].main;
+          $scope.loc = data.name + ', ' + data.sys.country;
+          $scope.location = 'Location: ' + $scope.loc;
+          getPlaylist(data.weather[0].main);
+        } else {
+          console.log('Location is the same as previous');
+        }
       });
     });
   };
@@ -80,16 +90,35 @@ angular.module('rain.weather', [])
     });
   };
 
-  $scope.getUser = function() {
+  $scope.loggedIn = function() {
+    if ($window.localStorage.userName) {
+      //username stored into localStorage
+      //retrieve youtube data of lastlocation for user stored
+      //if location different in geolocation update it
+      Users.getUser({ userName: $window.localStorage.userName }).then(function(data) {
+        Weather.getWeatherByCity(data[0].lastLocation).then(function(data) {
+          $scope.weather = 'Weather: ' + data.list[0].weather[0].main;
+          $scope.loc = data.city.name + ', ' + data.city.country;
+          $scope.location = 'Location: ' + $scope.loc;
+          getPlaylist(data.list[0].weather[0].main);
+        });
+      });
+    } else {
+      console.log('not logged in');
+    }
+  };
+
+  $scope.createUser = function() {
     var user = {
       userName: $scope.username,
-      password: $scope.password
+      password: $scope.password,
+      lastLocation: $scope.loc
     };
 
     Users.getUser({ userName: $scope.username }).then(function(data) {
       if (!data.length) {
         Users.createUser(user).then(function(data) {
-          console.log(data);
+          $scope.currentUser = $window.localStorage.userName = data.config.data.userName;
         });
         $scope.error = 'Account created!';
       } else {
@@ -98,7 +127,7 @@ angular.module('rain.weather', [])
     });
   };
 
-  $scope.mic = function () {
+  $scope.mic = function() {
     if (!annyang.isListening()) {
       annyang.start();
     } else {
@@ -111,7 +140,8 @@ angular.module('rain.weather', [])
       'Play songs in *location': function(location) {
         Weather.getWeatherByCity(location).then(function(data) {
           $scope.weather = 'Weather: ' + data.list[0].weather[0].main;
-          $scope.location = 'Location: ' + data.city.name + ', ' + data.city.country;
+          $scope.loc = data.city.name + ', ' + data.city.country;
+          $scope.location = 'Location: ' + $scope.loc;
           getPlaylist(data.list[0].weather[0].main);
         });
       }
