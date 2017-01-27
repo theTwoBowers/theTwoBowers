@@ -1,6 +1,5 @@
 angular.module('rain.services', [])
 
-//TODO: angular factories/services
 .factory('Weather', ['$http', function($http) {
   return {
     getWeatherByCoords: function(lat, lon) {
@@ -26,8 +25,6 @@ angular.module('rain.services', [])
 .factory('Video', ['$http', function($http) {
   return {
     getVid: function(search) {
-      // make object play genre based on weather
-      // additional changes
       var obj = {
         'Thunderstorm': ['storm', 'wind', 'thunderstruck'],
         'Drizzle': ['drizzle', 'melancholy', 'sad anime', 'rain song'],

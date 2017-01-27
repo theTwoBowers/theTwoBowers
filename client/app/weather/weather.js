@@ -31,7 +31,6 @@ angular.module('rain.weather', [])
 
   $scope.getWeatherByInput = function() {
     Weather.getWeatherByCity($scope.city).then(function(data) {
-      console.log(data.list[0].weather[0].main);
       $scope.weather = 'Weather: ' + data.list[0].weather[0].main;
       $scope.location = 'Location: ' + data.city.name + ', ' + data.city.country;
       getPlaylist(data.list[0].weather[0].main);
@@ -91,7 +90,6 @@ angular.module('rain.weather', [])
     var commands = {
       'Play songs in *location': function(location) {
         Weather.getWeatherByCity(location).then(function(data) {
-          console.log(data.list[0].weather[0].main);
           $scope.weather = 'Weather: ' + data.list[0].weather[0].main;
           $scope.location = 'Location: ' + data.city.name + ', ' + data.city.country;
           getPlaylist(data.list[0].weather[0].main);
