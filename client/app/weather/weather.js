@@ -85,7 +85,13 @@ angular.module('rain.weather', [])
     });
   };
 
-
+  $scope.mic = function () {
+    if (!annyang.isListening()) {
+      annyang.start();
+    } else {
+      annyang.abort();
+    }
+  };
   if (annyang) {
     var commands = {
       'Play songs in *location': function(location) {
@@ -97,7 +103,6 @@ angular.module('rain.weather', [])
       }
     };
     annyang.addCommands(commands);
-    annyang.start();
   }
-
+  annyang.abort();
 }]);
