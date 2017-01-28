@@ -48,7 +48,7 @@ angular.module('rain.services', [])
 
       return $http({
         method: 'GET',
-        //url: 'https://www.googleapis.com/youtube/v3/search',
+        url: 'https://www.googleapis.com/youtube/v3/search',
         params: {
           part: 'snippet',
           type: 'video',
