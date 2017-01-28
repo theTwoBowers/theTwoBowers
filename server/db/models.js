@@ -9,6 +9,7 @@ var CommentSchema = new mongoose.Schema({
 var UserSchema = new mongoose.Schema({
   userName: String,
   password: String,
+  lastLocation: String,
   playlists: Array
 });
 

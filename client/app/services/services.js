@@ -93,12 +93,23 @@ angular.module('rain.services', [])
 .factory('Users', ['$http', function($http) {
   return {
     getUser: function(userName) {
+      console.log(userName);
       return $http({
         method: 'GET',
         url: '/api/users',
-        params: { userName: userName }
+        params: userName
       }).then(function(resp) {
         return resp.data;
+      });
+    },
+
+    createUser: function(user) {
+      return $http({
+        method: 'POST',
+        url: '/api/users',
+        data: user
+      }).then(function(resp) {
+        return resp;
       });
     }
   };
