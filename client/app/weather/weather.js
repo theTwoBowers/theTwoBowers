@@ -5,6 +5,39 @@ angular.module('rain.weather', [])
   $scope.weather = 'Loading...';
   $scope.error = '';
 
+  var shuffle = function(array) {
+    var currentIndex = array.length, temporaryValue, randomIndex;
+    while (0 !== currentIndex) {
+      randomIndex = Math.floor(Math.random() * currentIndex);
+      currentIndex -= 1;
+      temporaryValue = array[currentIndex];
+      array[currentIndex] = array[randomIndex];
+      array[randomIndex] = temporaryValue;
+    }
+    return array;
+  };
+
+  var getPlaylist = function(weather) {
+    Video.getVid(weather).then(function(data) {
+      shuffle(data.items);
+      $scope.playlist = data.items;
+      var playlist = data.items.map(function(item) {
+        return item.id.videoId;
+      });
+      var firstVid = playlist.shift();
+      playlist = playlist.join(',');
+      $scope.data = $sce.trustAsResourceUrl('https://www.youtube.com/embed/' + firstVid + '?playlist=' + playlist + '&autoplay=1&loop=1&iv_load_policy=3');
+    });
+  };
+
+  var generateSession = function() {
+    var output = '';
+    while (output.length < 10) {
+      output += Math.floor(Math.random() * 10);
+    }
+    return output;
+  };
+
   if ($window.localStorage.userName) {
     Users.getUser({ userName: $window.localStorage.userName }).then(function(data) {
       if (!data.length) {
@@ -34,31 +67,6 @@ angular.module('rain.weather', [])
     $scope.logOutButton = 'display: none';
     console.log('Not logged in');
   }
-  
-  var shuffle = function(array) {
-    var currentIndex = array.length, temporaryValue, randomIndex;
-    while (0 !== currentIndex) {
-      randomIndex = Math.floor(Math.random() * currentIndex);
-      currentIndex -= 1;
-      temporaryValue = array[currentIndex];
-      array[currentIndex] = array[randomIndex];
-      array[randomIndex] = temporaryValue;
-    }
-    return array;
-  };
-
-  var getPlaylist = function(weather) {
-    Video.getVid(weather).then(function(data) {
-      shuffle(data.items);
-      $scope.playlist = data.items;
-      var playlist = data.items.map(function(item) {
-        return item.id.videoId;
-      });
-      var firstVid = playlist.shift();
-      playlist = playlist.join(',');
-      $scope.data = $sce.trustAsResourceUrl('https://www.youtube.com/embed/' + firstVid + '?playlist=' + playlist + '&autoplay=1&loop=1&iv_load_policy=3');
-    });
-  };
 
   $scope.getWeatherByInput = function() {
     Weather.getWeatherByCity($scope.city).then(function(data) {
@@ -136,14 +144,6 @@ angular.module('rain.weather', [])
     $window.localStorage.removeItem('userName');
     $window.localStorage.removeItem('session');
     location.reload();
-  };
-
-  var generateSession = function() {
-    var output = '';
-    while (output.length < 10) {
-      output += Math.floor(Math.random() * 10);
-    }
-    return output;
   };
 
   $scope.logIn = function() {

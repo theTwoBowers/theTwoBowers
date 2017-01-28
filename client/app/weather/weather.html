@@ -1,6 +1,6 @@
 <div id="header">
   <div class="col-xs-6">
-    <span ng-init="loggedIn()" id="logo">Rain Song</span>
+    <span id="logo">Rain Song</span>
   </div>
 
   <div class="col-xs-6">
@@ -10,9 +10,9 @@
 
     <div class="row">
       <form ng-submit="logIn()" class="right" style="{{ logInButton }}">
-        <input ng-model="username" placeholder="Username"></input>
-        <input ng-model="password" placeholder="Password"></input>
-        <button>Create Account</button>  
+        <input ng-model="username" placeholder="Username" minlength="4" required />
+        <input type="password" ng-model="password" placeholder="Password" minlength="6" required />
+        <button>Login / Signup</button>  
       </form>
     </div>
 
@@ -42,7 +42,7 @@
 
     <button ng-click="mic()" class="right"><img id="mic" src="/assets/mic.png"></button>
     <form ng-submit="getWeatherByInput()" class="right">
-      <input ng-model="city" placeholder="Search by city"></input>
+      <input ng-model="city" placeholder="Search by city" required />
       <button>Search</button>  
     </form><br>
 
