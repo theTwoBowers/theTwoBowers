@@ -12,7 +12,7 @@ module.exports = {
     post: function(req, res) {
       var params = {
         userName: req.body.userName,
-        comment: req.body.comment
+        text: req.body.text
       };
       Comment.create(params).then(function(resp) {
         res.sendStatus(201);
@@ -22,7 +22,6 @@ module.exports = {
 
   user: {
     getUser: function(req, res) {
-      console.log(req.query);
       User.find(req.query).then(function(resp) {
         res.json(resp);
       });
@@ -30,8 +29,17 @@ module.exports = {
 
     createUser: function(req, res) {
       User.create(req.body).then(function(resp) {
-        console.log(resp);
         res.sendStatus(201);
+      });
+    },
+
+    updateUser: function(req, res) {
+      console.log('req.body', req.body);
+      User.findByIdAndUpdate(req.body._id, { 
+        $set: { session: req.body.session }
+      }).then(function(resp) {
+        console.log('resp', resp);
+        res.json(resp);
       });
     }
   }

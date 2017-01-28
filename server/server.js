@@ -31,3 +31,4 @@ app.post('/api/comments', commentController.post);
 
 app.get('/api/users', userController.getUser);
 app.post('/api/users', userController.createUser);
+app.put('/api/users', userController.updateUser);

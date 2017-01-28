@@ -33,6 +33,7 @@ body {
 }
 
 #header {
+  height: 100px;
   background-color: #FFFFFF;
   margin: 0;
 }
@@ -46,14 +47,6 @@ body {
 #info {
   font-size: 200%;
   color: #000000;
-}
-
-#search {
-  float: right;
-}
-
-#create {
-  float: right;
 }
 
 iframe {
@@ -79,8 +72,12 @@ iframe {
   float: right;
 }
 
-#signup, #login {
+.right {
   float: right;
+}
+
+#mic {
+  height: 18px;
 }
 
 .item {

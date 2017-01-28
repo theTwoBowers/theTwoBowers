@@ -6,7 +6,33 @@ angular.module('rain.weather', [])
   $scope.error = '';
 
   if ($window.localStorage.userName) {
-    $scope.currentUser = $window.localStorage.userName;
+    Users.getUser({ userName: $window.localStorage.userName }).then(function(data) {
+      if (!data.length) {
+        $window.localStorage.removeItem('userName');
+      } else {
+        if ($window.localStorage.compareSession !== data[0].session) {
+          $window.localStorage.removeItem('userName'); 
+          //removes the userName prop from localStorage if the session string
+          // doesn't match the one in our DB - this assumes the userName prop was altered by the user in an attempt to
+          // impersonate or gain access to another user's info
+          location.reload();
+          //--does a force reload and deletes the userName prop if the session doesn't match
+        } else {
+          Weather.getWeatherByCity(data[0].lastLocation).then(function(data) {
+            $scope.weather = 'Weather: ' + data.list[0].weather[0].main;
+            $scope.loc = data.city.name + ', ' + data.city.country;
+            $scope.location = 'Location: ' + $scope.loc;
+            getPlaylist(data.list[0].weather[0].main);
+          });
+
+          $scope.currentUser = 'Logged in as - ' + $window.localStorage.userName;
+          $scope.logInButton = 'display: none';
+        }
+      }
+    });
+  } else {
+    $scope.logOutButton = 'display: none';
+    console.log('Not logged in');
   }
   
   var shuffle = function(array) {
@@ -78,51 +104,89 @@ angular.module('rain.weather', [])
   });
 
   $scope.postComment = function() {
-    var data = {
+    var comment = {
       userName: $window.localStorage.userName || 'Anonymous',
-      comment: $scope.commentInput
+      text: $scope.commentInput
     };
-    $scope.commentInput = '';
-    Comments.postComments(data).then(function(data) {
-      Comments.getComments().then(function(comments) {
-        $scope.comments = comments.reverse();
-      });
-    });
-  };
 
-  $scope.loggedIn = function() {
-    if ($window.localStorage.userName) {
-      //username stored into localStorage
-      //retrieve youtube data of lastlocation for user stored
-      //if location different in geolocation update it
-      Users.getUser({ userName: $window.localStorage.userName }).then(function(data) {
-        Weather.getWeatherByCity(data[0].lastLocation).then(function(data) {
-          $scope.weather = 'Weather: ' + data.list[0].weather[0].main;
-          $scope.loc = data.city.name + ', ' + data.city.country;
-          $scope.location = 'Location: ' + $scope.loc;
-          getPlaylist(data.list[0].weather[0].main);
+    var post = function() {
+      Comments.postComments(comment).then(function(data) {
+        Comments.getComments().then(function(comments) {
+          $scope.comments = comments.reverse();
         });
+      });
+    };
+
+    if ($window.localStorage.userName) {
+      Users.getUser({ userName: $window.localStorage.userName }).then(function(data) {
+        if ($window.localStorage.compareSession === data[0].session) {
+          console.log('works');
+          post();
+        }
       });
     } else {
-      console.log('not logged in');
+      console.log('posting as anon');
+      post();
     }
+    
+    $scope.commentInput = '';
   };
 
-  $scope.createUser = function() {
-    var user = {
-      userName: $scope.username,
-      password: $scope.password,
-      lastLocation: $scope.loc
-    };
+  $scope.logOut = function() {
+    $window.localStorage.removeItem('userName');
+    $window.localStorage.removeItem('session');
+    location.reload();
+  };
 
+  var generateSession = function() {
+    var output = '';
+    while (output.length < 10) {
+      output += Math.floor(Math.random() * 10);
+    }
+    return output;
+  };
+
+  $scope.logIn = function() {
+    var currentSession = generateSession();
+    //check username exists
     Users.getUser({ userName: $scope.username }).then(function(data) {
+      //if not create account
       if (!data.length) {
+        console.log('doesnt exist');
+        var user = {
+          userName: $scope.username,
+          password: $scope.password,
+          session: currentSession,
+          lastLocation: $scope.loc
+        };
+
         Users.createUser(user).then(function(data) {
-          $scope.currentUser = $window.localStorage.userName = data.config.data.userName;
+          $scope.currentUser = 'Logged in as - ' + data.config.data.userName;
+          $window.localStorage.userName = data.config.data.userName;
+          $window.localStorage.compareSession = currentSession;
         });
-        $scope.error = 'Account created!';
+
+        $scope.logInButton = 'display: none';
+        $scope.logOutButton = '';
+      //if yes check provided password against password in DB
       } else {
-        $scope.error = 'Username already taken.';
+        Users.getUser({ userName: $scope.username, password: $scope.password }).then(function(data) {
+          //if password wrong try again
+          if (!data.length) {
+            $scope.error = 'Wrong password, try again.';
+          } else {
+          //else update session string with random one
+            console.log(data);
+            Users.updateUser({ _id: data[0]._id, session: currentSession }).then(function(update) {
+              $scope.currentUser = 'Logged in as - ' + update.data.userName;
+              $window.localStorage.userName = update.data.userName;
+              $window.localStorage.compareSession = update.config.data.session;
+            });
+            $scope.logInButton = 'display: none';
+            $scope.logOutButton = '';
+            $scope.error = '';
+          }
+        });
       }
     });
   };
