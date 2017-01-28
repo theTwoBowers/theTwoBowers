@@ -1,20 +1,26 @@
-<div class="page-header" id="header">
-  <span ng-init="loggedIn()" id="logo">Rain Song</span>
+<div id="header">
+  <div class="col-xs-6">
+    <span ng-init="loggedIn()" id="logo">Rain Song</span>
+  </div>
 
-  <span id="user">{{ currentUser }}</span>
-  
-  <form ng-submit="getWeatherByInput()" id="search">
-    <input ng-model="city" placeholder="Search by city"></input>
-    <button>Search</button>  
-  </form><br>
+  <div class="col-xs-6">
+    <div class="row">
+      <span class="right">{{ currentUser }}</span>
+    </div>
 
-  <form ng-submit="createUser()" id="create">
-    <input ng-model="username" placeholder="Username"></input>
-    <input ng-model="password" placeholder="Password"></input>
-    <button>Create Account</button>  
-  </form><br>
+    <div class="row">
+      <form ng-submit="logIn()" class="right" style="{{ logInButton }}">
+        <input ng-model="username" placeholder="Username"></input>
+        <input ng-model="password" placeholder="Password"></input>
+        <button>Create Account</button>  
+      </form>
+    </div>
 
-  <span>{{ error }}</span>
+    <div class="row">
+      <button ng-click="logOut()" class="right" style="{{ logOutButton }}">Log Out</button>
+      <span class="right">{{ error }}</span>
+    </div>
+  </div>
 </div>
 
 <div ng-init="getWeatherGeoLocation()" class="row" style="height: {{ height }}px">
@@ -34,19 +40,18 @@
   <div class="col-xs-9" id="weather">
     <span id="info">{{ weather }}<br>{{ location }}</span>
 
-    <button ng-click="mic()" id="search">Annyang</button>
-    <form ng-submit="getWeatherByInput()" id="search">
+    <button ng-click="mic()" class="right"><img id="mic" src="/assets/mic.png"></button>
+    <form ng-submit="getWeatherByInput()" class="right">
       <input ng-model="city" placeholder="Search by city"></input>
       <button>Search</button>  
     </form><br>
-    
+
     <div id="comments" style="height: {{ height / 2 }}px">
       <h1 id="logo">Comments</h1>
       <span class="comment" ng-repeat="comment in comments">
         <p>
-          <span>{{ comment.userName }}</span>
-          <span>{{ comment.timeStamp }}</span>
-          <span>{{ comment.comment }}</span>
+          <span>{{ comment.userName }}:</span>
+          <span>{{ comment.text }}</span>
         </p>
       </span>
     </div>

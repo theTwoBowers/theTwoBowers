@@ -3,12 +3,13 @@ mongoose.Promise = global.Promise;
 
 var CommentSchema = new mongoose.Schema({
   userName: String,
-  comment: String
+  text: String
 });
 
 var UserSchema = new mongoose.Schema({
   userName: String,
   password: String,
+  session: String,
   lastLocation: String,
   playlists: Array
 });

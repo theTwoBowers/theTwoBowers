@@ -8,15 +8,15 @@ var db = mongoose.connection;
 var dummyComment = [
   {
     userName: 'Jonathan S.',
-    comment: 'this site is pretty cool guys!'
+    text: 'this site is pretty cool guys!'
   },
   {
     userName: 'Edmund L.',
-    comment: 'this site is the best!'
+    text: 'this site is the best!'
   },
   {
     userName: 'Scott C.',
-    comment: 'this site sux, 1v1 me bro'
+    text: 'this site sux, 1v1 me bro'
   }
 ];
 

@@ -48,7 +48,7 @@ angular.module('rain.services', [])
 
       return $http({
         method: 'GET',
-        url: 'https://www.googleapis.com/youtube/v3/search',
+        //url: 'https://www.googleapis.com/youtube/v3/search',
         params: {
           part: 'snippet',
           type: 'video',
@@ -106,6 +106,16 @@ angular.module('rain.services', [])
     createUser: function(user) {
       return $http({
         method: 'POST',
+        url: '/api/users',
+        data: user
+      }).then(function(resp) {
+        return resp;
+      });
+    },
+
+    updateUser: function(user) {
+      return $http({
+        method: 'PUT',
         url: '/api/users',
         data: user
       }).then(function(resp) {
