@@ -3,6 +3,8 @@ angular.module('rain.weather', [])
 .controller('weatherControl', ['$scope', '$sce', '$window', 'Weather', 'Video', 'Comments', 'Users', function($scope, $sce, $window, Weather, Video, Comments, Users) {
   $scope.height = screen.height / 1.2;
   $scope.weather = 'Loading...';
+  $scope.list = 'display: none';
+  $scope.store = 'display: none';
   $scope.error = '';
 
   var shuffle = function(array) {
@@ -60,6 +62,7 @@ angular.module('rain.weather', [])
             getPlaylist(data.list[0].weather[0].main);
           });
 
+          $scope.save = 'display: unset';
           $scope.currentUser = 'Logged in as - ' + $window.localStorage.userName;
           $scope.logInButton = 'display: none';
         }
@@ -69,6 +72,14 @@ angular.module('rain.weather', [])
     $scope.logOutButton = 'display: none';
     console.log('Not logged in');
   }
+
+  $scope.display = function(prop) {
+    if ($scope[prop].split(' ').includes('none')) {
+      $scope[prop] = 'display: unset';
+    } else {
+      $scope[prop] = 'display: none';
+    }    
+  };
 
   $scope.getWeatherByInput = function() {
     Weather.getWeatherByCity($scope.city).then(function(data) {
@@ -181,6 +192,7 @@ angular.module('rain.weather', [])
               $window.localStorage.userName = update.data.userName;
               $window.localStorage.compareSession = update.config.data.value;
             });
+            $scope.save = 'display: unset';
             $scope.logInButton = 'display: none';
             $scope.logOutButton = '';
             $scope.error = '';
