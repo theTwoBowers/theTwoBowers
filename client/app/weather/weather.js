@@ -32,11 +32,12 @@ angular.module('rain.weather', [])
     });
   };
 
-  var update = function(data, prop, val) {
+  var update = function(data, prop, val, meth) {
     return Users.updateUser({
       _id: data[0]._id,
       property: prop,
-      value: val
+      value: val,
+      method: meth
     });
   };
 
@@ -62,6 +63,11 @@ angular.module('rain.weather', [])
             getPlaylist(data.list[0].weather[0].main);
           });
 
+          var playlistNames = data[0].playlists.map(function(playlist) {
+            return Object.keys(playlist)[0];
+          });
+
+          $scope.savedPlaylists = playlistNames;
           $scope.save = 'display: unset';
           $scope.currentUser = 'Logged in as - ' + $window.localStorage.userName;
           $scope.logInButton = 'display: none';
@@ -79,6 +85,37 @@ angular.module('rain.weather', [])
     } else {
       $scope[prop] = 'display: none';
     }    
+  };
+
+  $scope.appendList = function(target) {
+    var targetList = target.currentTarget.innerHTML;
+    Users.getUser({
+      userName: $window.localStorage.userName,
+      session: $window.localStorage.compareSession
+    }).then(function(data) {
+      data[0].playlists.forEach(function(list) {
+        if (Object.keys(list)[0] === targetList) {
+          var newList = list[Object.keys(list)[0]];
+          $scope.playlist = newList;
+          var playlist = newList.map(function(item) {
+            return item.id.videoId;
+          });
+          var firstVid = playlist.shift();
+          playlist = playlist.join(',');
+          $scope.data = $sce.trustAsResourceUrl('https://www.youtube.com/embed/' + firstVid + '?playlist=' + playlist + '&autoplay=1&loop=1&iv_load_policy=3');
+        }
+      });
+    });    
+  };
+
+  $scope.savePlaylist = function() {
+    Users.getUser({
+      userName: $window.localStorage.userName,
+      session: $window.localStorage.compareSession
+    }).then(function(data) {
+      var playlist = $scope.playlist;
+      update(data, 'playlists', { [$scope.playlistName]: playlist }, '$addToSet');
+    });
   };
 
   $scope.getWeatherByInput = function() {
@@ -111,7 +148,7 @@ angular.module('rain.weather', [])
             userName: $window.localStorage.userName,
             session: $window.localStorage.compareSession
           }).then(function(data) {
-            update(data, 'lastLocation', $scope.loc);
+            update(data, 'lastLocation', $scope.loc, '$set');
           });
         }
       });
@@ -179,7 +216,7 @@ angular.module('rain.weather', [])
           $window.localStorage.userName = data.config.data.userName;
           $window.localStorage.compareSession = currentSession;
         });
-
+        $scope.save = 'display: unset';
         $scope.logInButton = 'display: none';
         $scope.logOutButton = '';
         $scope.error = '';
@@ -188,7 +225,7 @@ angular.module('rain.weather', [])
           if (!data.length) {
             $scope.error = 'Wrong password, try again.';
           } else {
-            update(data, 'session', currentSession).then(function(update) {
+            update(data, 'session', currentSession, '$set').then(function(update) {
               $scope.currentUser = 'Logged in as - ' + update.data.userName;
               $window.localStorage.userName = update.data.userName;
               $window.localStorage.compareSession = update.config.data.value;

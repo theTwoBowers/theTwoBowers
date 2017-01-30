@@ -43,9 +43,6 @@ angular.module('rain.services', [])
       };
       var randomGenre = queryStr[randomNum()];
 
-      console.log(search); //the current weather type
-      console.log(randomGenre); //the genre output by our obj
-
       return $http({
         method: 'GET',
         url: 'https://www.googleapis.com/youtube/v3/search',
@@ -55,9 +52,8 @@ angular.module('rain.services', [])
           videoEmbeddable: true,
           key: 'AIzaSyBWzdeA8Kc4DD__k7IgNKTblq0dAMXm0xs',
           q: randomGenre,
-          videoCategoryId: '10', //10 is the category for 'Music'
-          videoDefinition: 'high', //all videos must be HD
-          //videoDuration: 'short', //limits videos returned to 4mins
+          videoCategoryId: '10',
+          videoDefinition: 'high',
           maxResults: 20
         }
       }).then(function(resp) {
@@ -93,7 +89,6 @@ angular.module('rain.services', [])
 .factory('Users', ['$http', function($http) {
   return {
     getUser: function(userName) {
-      console.log(userName);
       return $http({
         method: 'GET',
         url: '/api/users',
