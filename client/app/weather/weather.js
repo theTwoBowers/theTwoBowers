@@ -80,6 +80,12 @@ angular.module('rain.weather', [])
   }
 
   $scope.display = function(prop) {
+    if (prop === 'list') {
+      $scope.store = 'display: none';
+    } else {
+      $scope.list = 'display: none';
+    }
+
     if ($scope[prop].split(' ').includes('none')) {
       $scope[prop] = 'display: unset';
     } else {
@@ -88,13 +94,13 @@ angular.module('rain.weather', [])
   };
 
   $scope.appendList = function(target) {
-    var targetList = target.currentTarget.innerHTML;
+    // var targetList = target.currentTarget.innerHTML;
     Users.getUser({
       userName: $window.localStorage.userName,
       session: $window.localStorage.compareSession
     }).then(function(data) {
       data[0].playlists.forEach(function(list) {
-        if (Object.keys(list)[0] === targetList) {
+        if (Object.keys(list)[0] === target) {
           var newList = list[Object.keys(list)[0]];
           $scope.playlist = newList;
           var playlist = newList.map(function(item) {
@@ -114,7 +120,17 @@ angular.module('rain.weather', [])
       session: $window.localStorage.compareSession
     }).then(function(data) {
       var playlist = $scope.playlist;
-      update(data, 'playlists', { [$scope.playlistName]: playlist }, '$addToSet');
+      update(data, 'playlists', { [$scope.playlistName]: playlist }, '$addToSet').then(function() {
+        Users.getUser({ userName: $window.localStorage.userName }).then(function(updated) {
+          var playlistNames = updated[0].playlists.map(function(playlist) {
+            return Object.keys(playlist)[0];
+          });
+          $scope.savedPlaylists = playlistNames;
+          $scope.list = 'display: unset';
+          $scope.store = 'display: none';
+          $scope.playlistName = '';
+        });
+      });
     });
   };
 
