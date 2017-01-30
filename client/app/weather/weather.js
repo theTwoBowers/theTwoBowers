@@ -30,11 +30,17 @@ angular.module('rain.weather', [])
     });
   };
 
+  var update = function(data, prop, val) {
+    return Users.updateUser({
+      _id: data[0]._id,
+      property: prop,
+      value: val
+    });
+  };
+
   var generateSession = function() {
     var output = '';
-    while (output.length < 10) {
-      output += Math.floor(Math.random() * 10);
-    }
+    while (output.length < 10) { output += Math.floor(Math.random() * 10); }
     return output;
   };
 
@@ -45,11 +51,7 @@ angular.module('rain.weather', [])
       } else {
         if ($window.localStorage.compareSession !== data[0].session) {
           $window.localStorage.removeItem('userName'); 
-          //removes the userName prop from localStorage if the session string
-          // doesn't match the one in our DB - this assumes the userName prop was altered by the user in an attempt to
-          // impersonate or gain access to another user's info
           location.reload();
-          //--does a force reload and deletes the userName prop if the session doesn't match
         } else {
           Weather.getWeatherByCity(data[0].lastLocation).then(function(data) {
             $scope.weather = 'Weather: ' + data.list[0].weather[0].main;
@@ -92,8 +94,13 @@ angular.module('rain.weather', [])
           $scope.loc = data.name + ', ' + data.sys.country;
           $scope.location = 'Location: ' + $scope.loc;
           getPlaylist(data.weather[0].main);
-        } else {
-          console.log('Location is the same as previous');
+
+          Users.getUser({
+            userName: $window.localStorage.userName,
+            session: $window.localStorage.compareSession
+          }).then(function(data) {
+            update(data, 'lastLocation', $scope.loc);
+          });
         }
       });
     });
@@ -128,12 +135,10 @@ angular.module('rain.weather', [])
     if ($window.localStorage.userName) {
       Users.getUser({ userName: $window.localStorage.userName }).then(function(data) {
         if ($window.localStorage.compareSession === data[0].session) {
-          console.log('works');
           post();
         }
       });
     } else {
-      console.log('posting as anon');
       post();
     }
     
@@ -148,11 +153,8 @@ angular.module('rain.weather', [])
 
   $scope.logIn = function() {
     var currentSession = generateSession();
-    //check username exists
     Users.getUser({ userName: $scope.username }).then(function(data) {
-      //if not create account
       if (!data.length) {
-        console.log('doesnt exist');
         var user = {
           userName: $scope.username,
           password: $scope.password,
@@ -168,19 +170,16 @@ angular.module('rain.weather', [])
 
         $scope.logInButton = 'display: none';
         $scope.logOutButton = '';
-      //if yes check provided password against password in DB
+        $scope.error = '';
       } else {
         Users.getUser({ userName: $scope.username, password: $scope.password }).then(function(data) {
-          //if password wrong try again
           if (!data.length) {
             $scope.error = 'Wrong password, try again.';
           } else {
-          //else update session string with random one
-            console.log(data);
-            Users.updateUser({ _id: data[0]._id, session: currentSession }).then(function(update) {
+            update(data, 'session', currentSession).then(function(update) {
               $scope.currentUser = 'Logged in as - ' + update.data.userName;
               $window.localStorage.userName = update.data.userName;
-              $window.localStorage.compareSession = update.config.data.session;
+              $window.localStorage.compareSession = update.config.data.value;
             });
             $scope.logInButton = 'display: none';
             $scope.logOutButton = '';
