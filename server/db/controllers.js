@@ -1,6 +1,7 @@
 var Models = require('./models');
 var Comment = Models.Comment;
 var User = Models.User;
+var request = require('request');
 
 module.exports = {
   comment: {
@@ -40,5 +41,21 @@ module.exports = {
         res.json(resp);
       });
     }
+  },
+
+  lat: function(req, res) {
+    var url = 'http://api.openweathermap.org/data/2.5/weather?lat=' + req.query.lat + '&lon=' + req.query.lon + '&appid=07a96fec5d332a2798fa83aba696d9f2';
+    request(url, function(err, response, body) {
+      if (err) { throw err; }
+      res.send(response);
+    });
+  },
+  city: function (req, res) {
+    var url = 'http://api.openweathermap.org/data/2.5/forecast/daily?q=' + req.query.city + '&appid=07a96fec5d332a2798fa83aba696d9f2';
+    request(url, function(err, response, body) {
+      if (err) { throw err; }
+      res.send(response);
+    });
   }
+
 };

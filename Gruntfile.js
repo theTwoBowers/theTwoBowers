@@ -43,7 +43,7 @@ module.exports = function(grunt) {
       scripts: {
         files: [
           'client/**/*.js',
-          'lib/**/*.js',
+          'client/lib/**/*.js',
         ],
         tasks: [
           'concat',
@@ -58,7 +58,7 @@ module.exports = function(grunt) {
 
     shell: {
       prodServer: {
-        command: 'git push live master',
+        command: 'git push heroku master',
         options: {
           stdout: true,
           stderr: true,

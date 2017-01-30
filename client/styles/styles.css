@@ -195,6 +195,7 @@ input {
 	border-radius: 5px;
 	
 	outline: 0;
+  resize:none;
 }
 
 #comment_form textarea {

@@ -12,4 +12,7 @@ route.get('/users', userController.getUser);
 route.post('/users', userController.createUser);
 route.put('/users', userController.updateUser);
 
+route.get('/lat', controller.lat);
+route.get('/city', controller.city);
+
 module.exports = route;
