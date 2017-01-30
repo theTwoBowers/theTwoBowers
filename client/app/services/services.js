@@ -52,7 +52,7 @@ angular.module('rain.services', [])
           type: 'video',
           videoEmbeddable: true,
           key: 'AIzaSyBWzdeA8Kc4DD__k7IgNKTblq0dAMXm0xs',
-          q: randomGenre + ' song',
+          q: randomGenre,
           videoCategoryId: '10', //10 is the category for 'Music'
           videoDefinition: 'high', //all videos must be HD
           //videoDuration: 'short', //limits videos returned to 4mins
