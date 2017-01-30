@@ -16,7 +16,7 @@
     <div class="row">
       <button ng-click="logOut()" class="right" style="{{ logOutButton }}">Log Out</button>
       <span class="right" id="currentUser">{{ currentUser }}</span>
-      <span class="right"> {{error}} </span>
+      <span class="right">{{ error }}</span>
     </div>
   </div>
 </div>
@@ -28,14 +28,14 @@
     <button ng-click="display('list')" id="saved" style="{{ save }}">Saved playlists</button>
     <button ng-click="display('store')" id="save" style="{{ save }}">Save this playlist</button>
     <form style="{{ store }}">
-      <input id="listTitle" placeholder="Name the playlist!" maxlength="12" required></input>
-      <button id="check">&#10003;</button>
+      <input ng-model="playlistName" id="listTitle" placeholder="Name the playlist!" maxlength="12" required></input>
+      <button ng-click="savePlaylist()" id="check">&#10003;</button>
     </form><br>
 
     <div id="savedList" style="{{ list }}">
-      <div ng-repeat="item in playlist track by $index">
+      <div ng-repeat="item in savedPlaylists track by $index">
         <div id="select">
-          <span>{{ item.snippet.title.slice(0, 10) }}</span>
+          <span ng-click="appendList($event)">{{ item }}</span>
         </div>
       </div><br>
     </div>
