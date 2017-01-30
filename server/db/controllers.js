@@ -35,8 +35,9 @@ module.exports = {
     },
 
     updateUser: function(req, res) {
+      var val = req.body.value;
       User.findByIdAndUpdate(req.body._id, { 
-        $set: { [req.body.property]: [req.body.value] }
+        [req.body.method]: { [req.body.property]: val }
       }).then(function(resp) {
         res.json(resp);
       });
