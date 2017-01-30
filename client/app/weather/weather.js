@@ -87,6 +87,7 @@ angular.module('rain.weather', [])
       $scope.loc = data.city.name + ', ' + data.city.country;
       $scope.location = 'Location: ' + $scope.loc;
       getPlaylist(data.list[0].weather[0].main);
+      $scope.icon = weatherIcon[data.list[0].weather[0].main];
     }); 
     $scope.city = '';   
   };
@@ -224,4 +225,15 @@ angular.module('rain.weather', [])
     annyang.addCommands(commands);
   }
   annyang.abort();
+
+  var weatherIcons = {
+    'Thunderstorm': '../../assets/Storm.png',
+    'Drizzle': '../../assets/Rain-thin.png',
+    'Rain': '../../assets/Rain.png',
+    'Clouds': '../../assets/Cloud.png',
+    'Snow': '../../assets/Snow.png',
+    'Clear': '../../assets/Sun.png',
+    'Extreme': '../../assets/Tornado.png',
+    'Fog': '../../assets/Haze.png',
+  };
 }]);
