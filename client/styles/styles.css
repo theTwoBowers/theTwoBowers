@@ -11,20 +11,28 @@ body {
 }
 
 #weather {
+  overflow: hidden;
   background-color: white;
   height: 60%;
   width: 74%;
 }
+#CommentsHeader {
+  font-size: 200%;
+}
+
+#weatherHeader {
+  padding-left: 20px;
+  height: 80px;
+}
 
 #comments {
   margin: 0px;
-  width: 100%;
   overflow-y: scroll;
 }
 
 .comment {
   color: #000000;
-  font-size: 24px;
+  font-size: 100%;
 }
 
 #input {
@@ -33,26 +41,33 @@ body {
 }
 
 #header {
-  height: 100px;
+  height: 50px;
   background-color: #FFFFFF;
   margin: 0;
 }
 
 #logo {
-  font-size: 400%;
+  font-size: 200%;
   font-family: 'Pacifico';
   color: #000000;
 }
 
 #info {
-  font-size: 200%;
+  font-size: 120%;
   color: #000000;
+  padding: 10px 10px;
 }
 
 iframe {
   height: 50%;
   width: 60%;
   border: 0;
+}
+
+#logoImage {
+  padding-bottom: 13px;
+  width: 5%;
+  height: 5%;
 }
 
 #video {
@@ -78,8 +93,91 @@ iframe {
 
 #mic {
   height: 18px;
+  margin-top: 2px;
 }
 
 .item {
   border-bottom: 1px solid black;
+}
+
+button {
+	border: 4px solid rgba(0,0,0,0.1);
+	padding: 5px 5px;
+	
+	-webkit-border-radius: 5px;
+	-moz-border-radius: 5px;
+	border-radius: 5px;
+	
+	outline: 0;
+  cursor: pointer;
+	background: -webkit-linear-gradient(top, #efefef, #ddd);
+	background: -moz-linear-gradient(top, #efefef, #ddd);
+	background: -ms-linear-gradient(top, #efefef, #ddd);
+	background: -o-linear-gradient(top, #efefef, #ddd);
+	background: linear-gradient(top, #efefef, #ddd);
+	color: #333;
+	text-shadow: 0px 1px 1px rgba(255,255,255,1);
+	border: 1px solid #ccc;
+  
+}
+
+#currentUser {
+  padding: 5px;
+}
+
+
+input {
+	border: 4px solid rgba(0,0,0,0.1);
+	padding: 1px 1px;
+	
+	-webkit-border-radius: 5px;
+	-moz-border-radius: 5px;
+	border-radius: 5px;
+	
+	outline: 0;
+}
+
+#comment_form input, #comment_form textarea {
+	border: 4px solid rgba(0,0,0,0.1);
+	padding: 8px 10px;
+	
+	-webkit-border-radius: 5px;
+	-moz-border-radius: 5px;
+	border-radius: 5px;
+	
+	outline: 0;
+}
+
+#comment_form textarea {
+	width: 350px;
+}
+
+#comment_form input[type="submit"] {
+	cursor: pointer;
+	background: -webkit-linear-gradient(top, #efefef, #ddd);
+	background: -moz-linear-gradient(top, #efefef, #ddd);
+	background: -ms-linear-gradient(top, #efefef, #ddd);
+	background: -o-linear-gradient(top, #efefef, #ddd);
+	background: linear-gradient(top, #efefef, #ddd);
+	color: #333;
+	text-shadow: 0px 1px 1px rgba(255,255,255,1);
+	border: 1px solid #ccc;
+}
+
+#comment_form input[type="submit"]:hover {
+	background: -webkit-linear-gradient(top, #eee, #ccc);
+	background: -moz-linear-gradient(top, #eee, #ccc);
+	background: -ms-linear-gradient(top, #eee, #ccc);
+	background: -o-linear-gradient(top, #eee, #ccc);
+	background: linear-gradient(top, #eee, #ccc);
+	border: 1px solid #bbb;
+}
+
+#comment_form input[type="submit"]:active {
+	background: -webkit-linear-gradient(top, #ddd, #aaa);
+	background: -moz-linear-gradient(top, #ddd, #aaa);
+	background: -ms-linear-gradient(top, #ddd, #aaa);
+	background: -o-linear-gradient(top, #ddd, #aaa);
+	background: linear-gradient(top, #ddd, #aaa);	
+	border: 1px solid #999;
 }

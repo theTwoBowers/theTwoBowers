@@ -29,15 +29,13 @@ angular.module('rain.services', [])
         'Thunderstorm': ['storm', 'wind', 'thunderstruck'],
         'Drizzle': ['drizzle', 'melancholy', 'sad anime', 'rain song'],
         'Rain': ['sad', 'melancholy', 'sad anime', 'rain song'],
-        'Clouds': ['chill', 'vaporwave', 'cloud rap', 'classical', 'final fantasy vii'],
+        'Clouds': ['chill', 'vaporwave', 'sorsari', 'classical', 'final fantasy vii'],
         'Snow': ['cold', 'cold weather', 'christmas'],
         'Clear': ['salsa', 'brazilian jazz', 'bossa nova', 'nujabes'],
         'Extreme': ['extreme', 'fire', 'danger'],
-        //TODO - throw something in here for 'Fog' and 'Mist'
-        //'Fog': [],
-        //'Mist': []
+        'Fog': ['']
       };
-      var queryStr = obj[search] || ['chill', 'vaporwave', 'cloud rap', 'classical', 'final fantasy vii'];
+      var queryStr = obj[search] || ['chill', 'vaporwave', 'classical', 'final fantasy vii'];
       var randomNum = function() {
         return Math.floor(Math.random() * (queryStr.length));
       };
