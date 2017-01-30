@@ -10,6 +10,10 @@ body {
   background-size: cover;
 }
 
+textarea {
+  resize: none;
+}
+
 #weather {
   overflow: hidden;
   background-color: white;
@@ -27,6 +31,7 @@ body {
 }
 
 #comments {
+  word-wrap: break-word;
   margin: 0px;
   overflow-y: scroll;
 }

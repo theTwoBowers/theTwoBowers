@@ -1,6 +1,6 @@
 <div id="header">
   <div class="col-xs-6">
-    <img id="logoImage" src="../../assets/cloudLogo.png" >
+    <img id="logoImage" src="/assets/cloudLogo.png" >
     <span id="logo">RainSong</span>
   </div>
 
@@ -49,7 +49,7 @@
     <div class="col-xs-6">
       <div id="comment_form">
         <form ng-Submit="postComment()">
-          <textarea ng-model="commentInput" rows="10" name="comment" id="comment" placeholder="Comment"></textarea><br>
+          <textarea ng-model="commentInput" rows="8" name="comment" id="comment" placeholder="Comment" maxlength="300" required></textarea><br>
           <input type="submit" name="submit" value="Add Comment">
         </form> 
       </div>
