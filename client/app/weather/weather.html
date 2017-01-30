@@ -48,14 +48,11 @@
     </div>
     <div class="col-xs-6">
       <div id="comment_form">
-        <br>
-      <div>
         <form ng-Submit="postComment()">
-          <textarea ng-model="commentInput" rows="10" name="comment" id="comment" placeholder="Comment"></textarea>
+          <textarea ng-model="commentInput" rows="10" name="comment" id="comment" placeholder="Comment"></textarea><br>
           <input type="submit" name="submit" value="Add Comment">
-        </form>
-      </div>   
-    </div>
+        </form> 
+      </div>
     </div>
     <div class="col-xs-6" id="comments" style="height: {{ height / 2 }}px">
     <br>
