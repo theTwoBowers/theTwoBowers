@@ -50,7 +50,7 @@ angular.module('rain.services', [])
           part: 'snippet',
           type: 'video',
           videoEmbeddable: true,
-          key: 'AIzaSyBWzdeA8Kc4DD__k7IgNKTblq0dAMXm0xs',
+          key: process.env.YOUTUBE_KEY,
           q: randomGenre,
           videoCategoryId: '10',
           videoDefinition: 'high',
