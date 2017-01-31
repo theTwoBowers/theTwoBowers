@@ -58,7 +58,7 @@ module.exports = function(grunt) {
 
     shell: {
       prodServer: {
-        command: 'git add . && git commit -m "deploy" && git push heroku master',
+        command: 'git push heroku master',
         options: {
           stdout: true,
           stderr: true,
