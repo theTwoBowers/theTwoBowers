@@ -48,7 +48,6 @@ angular.module('rain.services', [])
       });
 
       return $q.all([youtubeKey]).then(function(arr) {
-        console.log(arr);
         return $http({
           method: 'GET',
           url: 'https://www.googleapis.com/youtube/v3/search',
