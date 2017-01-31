@@ -53,6 +53,7 @@
   <div class="col-xs-9" id="weather">
     <div class="row" id="weatherHeader">
       <br>
+      <img class="col-xs-1" id="weatherIcon"  ng-src="{{icon}}"/>
       <span id="info">{{ weather }}<br></span><span id="info">{{ location }}</span>
       <div class="right">
         <form ng-submit="getWeatherByInput()" id="manualSearch">

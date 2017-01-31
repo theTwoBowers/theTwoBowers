@@ -4,7 +4,8 @@ var bodyParser = require('body-parser');
 var mongoose = require('mongoose');
 var routes = require('./db/routes');
 
-mongoose.connect('mongodb://localhost/twoBowers');
+mongoose.connect('mongodb://localHost/theTwoBowers');
+
 var db = mongoose.connection;
 
 var app = express();
