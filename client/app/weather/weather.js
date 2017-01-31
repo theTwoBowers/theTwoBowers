@@ -131,7 +131,9 @@ angular.module('rain.weather', [])
     }).then(function(data) {
       var playlist = $scope.playlist;
       var playlistName = $scope.playlistName;
-      update(data, 'playlists', { playlistName: playlist }, '$addToSet').then(function() {
+      var obj = {};
+      obj[playlistName] = playlist;
+      update(data, 'playlists', obj, '$addToSet').then(function() {
         Users.getUser({ userName: $window.localStorage.userName }).then(function(updated) {
           var playlistNames = updated[0].playlists.map(function(playlist) {
             return Object.keys(playlist)[0];
