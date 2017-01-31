@@ -130,7 +130,8 @@ angular.module('rain.weather', [])
       session: $window.localStorage.compareSession
     }).then(function(data) {
       var playlist = $scope.playlist;
-      update(data, 'playlists', { [$scope.playlistName]: playlist }, '$addToSet').then(function() {
+      var playlistName = $scope.playlistName;
+      update(data, 'playlists', { playlistName: playlist }, '$addToSet').then(function() {
         Users.getUser({ userName: $window.localStorage.userName }).then(function(updated) {
           var playlistNames = updated[0].playlists.map(function(playlist) {
             return Object.keys(playlist)[0];
