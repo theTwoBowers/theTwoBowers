@@ -46,7 +46,7 @@ angular.module('rain.services', [])
         method: 'GET',
         url: '/api/keys'
       }).then(function(key) {
-        return key;
+        youtubeKey = key;
       });
       console.log(youtubeKey);
       return $http({
