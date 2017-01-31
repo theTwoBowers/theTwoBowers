@@ -94,7 +94,6 @@ angular.module('rain.weather', [])
   };
 
   $scope.appendList = function(target) {
-    // var targetList = target.currentTarget.innerHTML;
     Users.getUser({
       userName: $window.localStorage.userName,
       session: $window.localStorage.compareSession
