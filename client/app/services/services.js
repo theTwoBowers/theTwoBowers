@@ -56,7 +56,7 @@ angular.module('rain.services', [])
             part: 'snippet',
             type: 'video',
             videoEmbeddable: true,
-            key: arr[0],
+            key: arr[0].data,
             q: randomGenre,
             videoCategoryId: '10',
             videoDefinition: 'high',
