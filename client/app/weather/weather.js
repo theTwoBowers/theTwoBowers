@@ -72,7 +72,7 @@ angular.module('rain.weather', [])
             $scope.location = 'Location: ' + $scope.loc;
             getPlaylist(data.list[0].weather[0].main);
             $scope.icon = weatherIcons[data.list[0].weather[0].main];
-            console.log($scope.icon);
+            
           });
 
           var playlistNames = data[0].playlists.map(function(playlist) {
@@ -88,7 +88,7 @@ angular.module('rain.weather', [])
     });
   } else {
     $scope.logOutButton = 'display: none';
-    console.log('Not logged in');
+  
   }
 
   $scope.display = function(prop) {
@@ -152,7 +152,7 @@ angular.module('rain.weather', [])
       $scope.location = 'Location: ' + $scope.loc;
       getPlaylist(data.list[0].weather[0].main);
       $scope.icon = weatherIcons[data.list[0].weather[0].main];
-      console.log($scope.icon);
+      
     }); 
     $scope.city = '';   
   };
@@ -172,7 +172,7 @@ angular.module('rain.weather', [])
           $scope.location = 'Location: ' + $scope.loc;
           getPlaylist(data.weather[0].main);
           $scope.icon = weatherIcons[data.weather[0].main];
-          console.log($scope.icon);
+          
 
           Users.getUser({
             userName: $window.localStorage.userName,
