@@ -42,12 +42,9 @@ angular.module('rain.services', [])
         return Math.floor(Math.random() * (queryStr.length));
       };
       var randomGenre = queryStr[randomNum()];
-      var youtubeKey;
-      $http({
+      var youtubeKey = $http({
         method: 'GET',
         url: '/api/keys'
-      }).then(function(key) {
-        youtubeKey = key;
       });
       console.log(youtubeKey);
       return $http({
