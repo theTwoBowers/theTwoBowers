@@ -47,7 +47,7 @@ angular.module('rain.services', [])
         url: '/api/keys'
       });
 
-      $q.all([youtubeKey]).then(function(arr) {
+      return $q.all([youtubeKey]).then(function(arr) {
         console.log(arr);
         return $http({
           method: 'GET',
