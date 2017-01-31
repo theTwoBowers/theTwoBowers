@@ -42,7 +42,7 @@ angular.module('rain.services', [])
         return Math.floor(Math.random() * (queryStr.length));
       };
       var randomGenre = queryStr[randomNum()];
-
+      console.log('this is hte processssss: ', process.env.YOUTUBE_KEY);
       return $http({
         method: 'GET',
         url: 'https://www.googleapis.com/youtube/v3/search',
