@@ -45,14 +45,14 @@ module.exports = {
   },
 
   lat: function(req, res) {
-    var url = 'http://api.openweathermap.org/data/2.5/weather?lat=' + req.query.lat + '&lon=' + req.query.lon + '&appid=07a96fec5d332a2798fa83aba696d9f2';
+    var url = 'http://api.openweathermap.org/data/2.5/weather?lat=' + req.query.lat + '&lon=' + req.query.lon + '&appid=' + process.env.OWM_KEY;
     request(url, function(err, response, body) {
       if (err) { throw err; }
       res.send(response);
     });
   },
   city: function (req, res) {
-    var url = 'http://api.openweathermap.org/data/2.5/forecast/daily?q=' + req.query.city + '&appid=07a96fec5d332a2798fa83aba696d9f2';
+    var url = 'http://api.openweathermap.org/data/2.5/forecast/daily?q=' + req.query.city + '&appid=' + process.env.OWM_KEY;
     request(url, function(err, response, body) {
       if (err) { throw err; }
       res.send(response);
