@@ -1,6 +1,6 @@
-# Project Name
+# RainSong
 
-> Pithy project description
+> RainSong uses geolocation in conjunction with the OpenWeatherMap API to serve you a music video/playlist that relates to the current weather conditions in your area.
 
 ## Team
 

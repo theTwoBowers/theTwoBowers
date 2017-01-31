@@ -65,6 +65,15 @@ angular.module('rain.services', [])
           return resp.data;
         });
       });
+    },
+
+    getWeatherByCity: function(city) {
+      return $http({
+        method: 'GET',
+        url: 'http://api.openweathermap.org/data/2.5/forecast/daily?q=' + city + '&appid=07a96fec5d332a2798fa83aba696d9f2'
+      }).then(function(resp) {
+        return resp.data;
+      });
     }
   };
 }])
@@ -97,6 +106,7 @@ angular.module('rain.services', [])
     getUser: function(userName) {
       return $http({
         method: 'GET',
+
         url: '/api/users',
         params: userName
       }).then(function(resp) {
@@ -125,3 +135,4 @@ angular.module('rain.services', [])
     }
   };
 }]);
+
