@@ -16,6 +16,7 @@ db.once('open', function() {
   var port = process.env.PORT || 3000;
   app.listen(port, function() {
     console.log('I am listening to port:', port);
+    console.log('keys: ', process.env.YOUTUBE_KEY, process.env.OWM_KEY);
   });
 });
 
