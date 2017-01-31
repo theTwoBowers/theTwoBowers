@@ -45,7 +45,7 @@ angular.module('rain.services', [])
       var youtubeKey = $http({
         method: 'GET',
         url: '/api/keys'
-      });
+      }).$$state.value.data;
       console.log(youtubeKey);
       return $http({
         method: 'GET',
