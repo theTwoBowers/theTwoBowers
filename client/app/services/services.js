@@ -49,7 +49,7 @@ angular.module('rain.services', [])
       }).then(function(key) {
         youtubeKey = key;
       });
-
+      console.log(youtubeKey);
       return $http({
         method: 'GET',
         url: 'https://www.googleapis.com/youtube/v3/search',
