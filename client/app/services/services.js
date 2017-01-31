@@ -24,7 +24,7 @@ angular.module('rain.services', [])
   };
 }])
 
-.factory('Video', ['$http', function($http) {
+.factory('Video', ['$http', '$q', function($http, $q) {
   return {
     getVid: function(search) {
       var obj = {
@@ -45,25 +45,26 @@ angular.module('rain.services', [])
       var youtubeKey = $http({
         method: 'GET',
         url: '/api/keys'
-      }).then(function(key) {
-        youtubeKey = key;
       });
-      console.log(youtubeKey);
-      return $http({
-        method: 'GET',
-        url: 'https://www.googleapis.com/youtube/v3/search',
-        params: {
-          part: 'snippet',
-          type: 'video',
-          videoEmbeddable: true,
-          key: youtubeKey,
-          q: randomGenre,
-          videoCategoryId: '10',
-          videoDefinition: 'high',
-          maxResults: 20
-        }
-      }).then(function(resp) {
-        return resp.data;
+
+      $q.all([youtubeKey]).then(function(arr) {
+        console.log(arr);
+        return $http({
+          method: 'GET',
+          url: 'https://www.googleapis.com/youtube/v3/search',
+          params: {
+            part: 'snippet',
+            type: 'video',
+            videoEmbeddable: true,
+            key: arr[0],
+            q: randomGenre,
+            videoCategoryId: '10',
+            videoDefinition: 'high',
+            maxResults: 20
+          }
+        }).then(function(resp) {
+          return resp.data;
+        });
       });
     }
   };
