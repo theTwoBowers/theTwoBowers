@@ -48,23 +48,24 @@ angular.module('rain.services', [])
         url: '/api/keys'
       }).then(function(key) {
         youtubeKey = key;
-        return $http({
-          method: 'GET',
-          url: 'https://www.googleapis.com/youtube/v3/search',
-          params: {
-            part: 'snippet',
-            type: 'video',
-            videoEmbeddable: true,
-            key: youtubeKey,
-            q: randomGenre,
-            videoCategoryId: '10',
-            videoDefinition: 'high',
-            maxResults: 20
-          }
-        }).then(function(resp) {
-          return resp.data;
-        });
-      });  
+      });
+
+      return $http({
+        method: 'GET',
+        url: 'https://www.googleapis.com/youtube/v3/search',
+        params: {
+          part: 'snippet',
+          type: 'video',
+          videoEmbeddable: true,
+          key: youtubeKey,
+          q: randomGenre,
+          videoCategoryId: '10',
+          videoDefinition: 'high',
+          maxResults: 20
+        }
+      }).then(function(resp) {
+        return resp.data;
+      });
     }
   };
 }])
