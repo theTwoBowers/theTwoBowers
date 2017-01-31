@@ -6,6 +6,7 @@ angular.module('rain.weather', [])
   $scope.list = 'display: none';
   $scope.store = 'display: none';
   $scope.error = '';
+  
   var weatherIcons = {
     'Thunderstorm': '/assets/Storm.png',
     'Drizzle': '/assets/Rain-thin.png',
@@ -72,7 +73,6 @@ angular.module('rain.weather', [])
             $scope.location = 'Location: ' + $scope.loc;
             getPlaylist(data.list[0].weather[0].main);
             $scope.icon = weatherIcons[data.list[0].weather[0].main];
-            
           });
 
           var playlistNames = data[0].playlists.map(function(playlist) {
@@ -87,8 +87,7 @@ angular.module('rain.weather', [])
       }
     });
   } else {
-    $scope.logOutButton = 'display: none';
-  
+    $scope.logOutButton = 'display: none';  
   }
 
   $scope.display = function(prop) {
@@ -151,8 +150,7 @@ angular.module('rain.weather', [])
       $scope.loc = data.city.name + ', ' + data.city.country;
       $scope.location = 'Location: ' + $scope.loc;
       getPlaylist(data.list[0].weather[0].main);
-      $scope.icon = weatherIcons[data.list[0].weather[0].main];
-      
+      $scope.icon = weatherIcons[data.list[0].weather[0].main];      
     }); 
     $scope.city = '';   
   };
@@ -173,7 +171,6 @@ angular.module('rain.weather', [])
           getPlaylist(data.weather[0].main);
           $scope.icon = weatherIcons[data.weather[0].main];
           
-
           Users.getUser({
             userName: $window.localStorage.userName,
             session: $window.localStorage.compareSession
@@ -219,8 +216,7 @@ angular.module('rain.weather', [])
       });
     } else {
       post();
-    }
-    
+    }    
     $scope.commentInput = '';
   };
 
