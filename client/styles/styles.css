@@ -1,7 +1,244 @@
-/*TODO: styling for front-end*/
-#playList {
-	list-style: none;
-	width: 200px;
-	border: 1px solid black;
-	text-align: center;
+html {
+  overflow-x: hidden;
 }
+
+body {
+  background: url('https://source.unsplash.com/category/nature') no-repeat center center fixed; 
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+}
+
+
+
+#weatherIcon {
+  padding-left: 0px;
+  padding-right: 0px;
+  height: 5%;
+  width: 5%;
+}
+
+textarea {
+  resize: none;
+}
+
+#weather {
+  overflow: hidden;
+  background-color: white;
+  height: 60%;
+  width: 75%;
+}
+
+#CommentsHeader {
+  font-size: 200%;
+}
+
+#weatherHeader {
+  padding-left: 20px;
+  padding-right: 20px;
+}
+
+#comments {
+  word-wrap: break-word;
+  margin: 0px;
+  overflow-y: scroll;
+}
+
+.comment {
+  color: #000000;
+  font-size: 100%;
+}
+
+#input {
+  position: absolute;
+  bottom: 0px;
+}
+
+#header {
+  height: 50px;
+  background-color: #FFFFFF;
+  margin: 0;
+  overflow: hidden;
+}
+
+#logo {
+  font-size: 200%;
+  font-family: 'Pacifico';
+  color: #000000;
+}
+
+#info {
+  font-size: 120%;
+  color: #000000;
+  padding: 10px 10px;
+}
+
+#save, #saved {
+  height: 25px;
+  padding: 0px 5px;
+  color: #000000;
+  margin-top: 10px;
+  margin-bottom: 10px;
+  display: none;
+}
+
+#select:hover {
+  background-color: #aaa;
+  width: 100%;
+  cursor: pointer;
+}
+
+#savedList {
+  position: absolute;
+  z-index: 1000;
+  min-width: 30%; 
+  max-width: 90%;
+  min-height: 100px;
+  color: #000000;
+  border: 4px solid rgba(0,0,0,0.1);
+  border-radius: 5px;
+  background-color: #FFFFFF;
+}
+
+#listTitle {
+  color: #000000;
+  height: 25px;
+  font-size: 15px;
+}
+
+#check {
+  color: #000000;
+  padding: 1px;
+  width: 20px;
+}
+
+iframe {
+  height: 100%;
+  border: 0;
+}
+
+#logoImage {
+  padding-bottom: 13px;
+  width: 5%;
+  height: 5%;
+}
+
+#video {
+  left: 12%;
+  padding-right: 0px;
+  height: 60%;
+  width: 50%;
+}
+
+#playList {
+  background-color: #000000;
+  height: 120%;
+  overflow-y: scroll;
+  overflow-x: hidden;
+  color: #FFFFFF;
+  float: right;
+}
+
+.right {
+  float: right;
+}
+
+#manualSearch {
+  display: inline-block;
+  margin: 0px;
+  padding: 0px;
+}
+
+#mic {
+  height: 18px;
+}
+
+.item {
+  border-bottom: 1px solid black;
+}
+
+button {
+	border: 4px solid rgba(0,0,0,0.1);
+	padding: 5px 5px;
+	
+	-webkit-border-radius: 5px;
+	-moz-border-radius: 5px;
+	border-radius: 5px;
+	
+	outline: 0;
+  cursor: pointer;
+	background: -webkit-linear-gradient(top, #efefef, #ddd);
+	background: -moz-linear-gradient(top, #efefef, #ddd);
+	background: -ms-linear-gradient(top, #efefef, #ddd);
+	background: -o-linear-gradient(top, #efefef, #ddd);
+	background: linear-gradient(top, #efefef, #ddd);
+	color: #333;
+	text-shadow: 0px 1px 1px rgba(255,255,255,1);
+	border: 1px solid #ccc;
+  
+}
+
+#currentUser {
+  padding: 5px;
+}
+
+
+input {
+	border: 4px solid rgba(0,0,0,0.1);
+	padding: 1px 1px;
+	
+	-webkit-border-radius: 5px;
+	-moz-border-radius: 5px;
+	border-radius: 5px;
+	
+	outline: 0;
+}
+
+#comment_form input, #comment_form textarea {
+	border: 4px solid rgba(0,0,0,0.1);
+	padding: 8px 10px;
+	
+	-webkit-border-radius: 5px;
+	-moz-border-radius: 5px;
+	border-radius: 5px;
+	
+	outline: 0;
+  resize:none;
+}
+
+#comment_form textarea {
+	width: 350px;
+}
+
+#comment_form input[type="submit"], button {
+	cursor: pointer;
+	background: -webkit-linear-gradient(top, #efefef, #ddd);
+	background: -moz-linear-gradient(top, #efefef, #ddd);
+	background: -ms-linear-gradient(top, #efefef, #ddd);
+	background: -o-linear-gradient(top, #efefef, #ddd);
+	background: linear-gradient(top, #efefef, #ddd);
+	color: #333;
+	text-shadow: 0px 1px 1px rgba(255,255,255,1);
+	border: 1px solid #ccc;
+}
+
+#comment_form input[type="submit"]:hover, button:hover {
+	background: -webkit-linear-gradient(top, #eee, #ccc);
+	background: -moz-linear-gradient(top, #eee, #ccc);
+	background: -ms-linear-gradient(top, #eee, #ccc);
+	background: -o-linear-gradient(top, #eee, #ccc);
+	background: linear-gradient(top, #eee, #ccc);
+	border: 1px solid #bbb;
+}
+
+#comment_form input[type="submit"]:active, button:active {
+	background: -webkit-linear-gradient(top, #ddd, #aaa);
+	background: -moz-linear-gradient(top, #ddd, #aaa);
+	background: -ms-linear-gradient(top, #ddd, #aaa);
+	background: -o-linear-gradient(top, #ddd, #aaa);
+	background: linear-gradient(top, #ddd, #aaa);	
+	border: 1px solid #999;
+}
+
+

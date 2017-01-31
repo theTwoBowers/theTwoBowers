@@ -1,29 +1,28 @@
 var express = require('express');
 var morgan = require('morgan'); // logs server interactions
 var bodyParser = require('body-parser');
-//TODO: connect to database;
 var mongoose = require('mongoose');
+var routes = require('./db/routes');
 
-mongoose.connect('mongodb://localhost/twoBowers');
+
+mongoose.connect('mongodb://heroku_tfpq2psd:igte9e9qas64bup68jli7rdtj4@ds137729.mlab.com:37729/heroku_tfpq2psd');
 
 var db = mongoose.connection;
-db.once('open', function() {
-  console.log('Connected to MongoDB')
-})
 
 var app = express();
-var port = process.env.PORT || 3000;
+
+db.once('open', function() {
+  console.log('Connected to MongoDB');
+
+  var port = process.env.PORT || 3000;
+  app.listen(port, function() {
+    console.log('I am listening to port:', port);
+    console.log('keys: ', process.env.YOUTUBE_KEY, process.env.OWM_KEY);
+  });
+});
 
 app.use(morgan('dev'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended: true}));
 app.use(express.static(__dirname + '/../client'));
-console.log(__dirname)
-
-//TODO: server routing;
-
-
-app.listen(port);
-
-console.log('I am listening to port:', port);
-//something happened
+app.use('/api', routes);
