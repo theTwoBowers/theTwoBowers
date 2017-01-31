@@ -14,5 +14,6 @@ route.put('/users', userController.updateUser);
 
 route.get('/lat', controller.lat);
 route.get('/city', controller.city);
+route.get('/keys', controller.keys);
 
 module.exports = route;

@@ -57,6 +57,9 @@ module.exports = {
       if (err) { throw err; }
       res.send(response);
     });
+  },
+  keys: function(req, res) {
+    res.send(process.env.YOUTUBE_KEY);
   }
 
 };
